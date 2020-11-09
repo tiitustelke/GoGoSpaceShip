@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    readonly float movementSpeed = 4f;
+    float movementSpeed = 4f;
+    float health = 100f;
+    public GameObject ammo;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -33,10 +35,19 @@ public class Player : MonoBehaviour
             }
             
         }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Instantiate(ammo, transform.position + transform.forward * 100, transform.rotation);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("Test.");
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            health -= 50f;
+            Destroy(collision.gameObject);
+        }
     }
 }

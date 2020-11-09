@@ -64,9 +64,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Enemy.cs" />
+    <Compile Include="Assets\EnemySpawner.cs" />
     <Compile Include="Assets\GameController.cs" />
     <Compile Include="Assets\Player.cs" />
-    <Compile Include="Assets\UfoSpawner.cs" />
+    <Compile Include="Assets\PlayerWeapon.cs" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />

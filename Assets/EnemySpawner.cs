@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 
-public class UfoSpawner : MonoBehaviour
+public class EnemySpawner : MonoBehaviour
 {
     long lastUpdate;
     Vector2 min, max;
-    public GameObject ufo;
+    public GameObject[] enemyTypes;
 
     // Start is called before the first frame update
     void Start()
@@ -23,7 +23,7 @@ public class UfoSpawner : MonoBehaviour
         if (DateTimeOffset.UtcNow.ToUnixTimeSeconds() - lastUpdate >= 5)
         {
             lastUpdate = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
-            Instantiate(ufo, new Vector3(max.x, GetRandomPosition(min.y, max.y)), Quaternion.identity);
+            Instantiate(enemyTypes[0], new Vector3(max.x, GetRandomPosition(min.y, max.y)), Quaternion.identity);
         }
     }
 

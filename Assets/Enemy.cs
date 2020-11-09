@@ -5,6 +5,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     float movementSpeed = 5f;
+    public int health;
 
     // Start is called before the first frame update
     void Start()
@@ -18,15 +19,17 @@ public class Enemy : MonoBehaviour
         transform.position += Vector3.left * movementSpeed * Time.deltaTime;
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    private void OnBecameInvisible()
     {
-        Debug.Log("Touch");
         Destroy(gameObject);
     }
 
-    private void OnBecameInvisible()
+    public void DecreaseHealth()
     {
-        Debug.Log("Invisible");
-        Destroy(gameObject);
+        health--;
+        if (health == 0)
+        {
+            Destroy(gameObject);
+        }
     }
 }
