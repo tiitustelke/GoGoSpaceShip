@@ -5,7 +5,7 @@
         <State name="__root__">
           <Node name="GoGoSpaceShip" expanded="True">
             <Node name="Assets" expanded="True">
-              <Node name="Player.cs" selected="True" />
+              <Node name="PlayerWeapon.cs" selected="True" />
             </Node>
           </Node>
         </State>
@@ -14,7 +14,7 @@
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="6ea94e26-def1-4130-9012-18c74ca8435c" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="78c74518-40a1-4721-aeda-dfb4f1422cf0" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
