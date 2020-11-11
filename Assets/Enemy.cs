@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    float movementSpeed = 5f;
+    public float movementSpeed;
+    public float damage;
     public int health;
 
     // Start is called before the first frame update
@@ -29,6 +30,7 @@ public class Enemy : MonoBehaviour
         health--;
         if (health == 0)
         {
+            PlayerInfo.score++;
             Destroy(gameObject);
         }
     }

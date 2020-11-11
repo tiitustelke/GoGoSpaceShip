@@ -6,20 +6,22 @@ public class Player : MonoBehaviour
 {
     float movementSpeed = 4f;
     float health = 100f;
+
+    Vector2 min, max;
+
     public GameObject ammo;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        float camDistance = Vector3.Distance(transform.position, Camera.main.transform.position);
+        min = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, camDistance));
+        max = Camera.main.ViewportToWorldPoint(new Vector3(1, 1, camDistance));
     }
 
     // Update is called once per frame
     void Update()
     {
-        float camDistance = Vector3.Distance(transform.position, Camera.main.transform.position);
-        Vector2 min = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, camDistance));
-        Vector2 max = Camera.main.ViewportToWorldPoint(new Vector3(1, 1, camDistance));
         if (Input.GetKey(KeyCode.UpArrow))
         {
             if (transform.position.y < max.y)
@@ -46,8 +48,12 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            health -= 50f;
+            health -= collision.gameObject.GetComponent<Enemy>().damage;
             Destroy(collision.gameObject);
+            if (health <= 0) // The player is killed, load game over scene
+            {
+
+            }
         }
     }
 }
