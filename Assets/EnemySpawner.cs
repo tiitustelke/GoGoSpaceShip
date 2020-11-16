@@ -5,27 +5,71 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    long lastUpdate;
+    private float lastUpdate, lastSpawn;
     Vector2 min, max;
+
+    private List<Level> levels;
+
+    private int spawnCount, totalSpawns;
+
     public GameObject[] enemyTypes;
-    public GameObject boss;
 
     // Start is called before the first frame update
     void Start()
     {
         min = Camera.main.ViewportToWorldPoint(new Vector3(0, 0));
         max = Camera.main.ViewportToWorldPoint(new Vector3(1, 1));
-        lastUpdate = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
-        //boss = GameObject.Find()
+
+        levels = new List<Level>
+        {
+            new Level(2, 3, 30),
+            new Level(1, 4, 20)
+        };
+
+        lastUpdate = 0;
+        lastSpawn = 0;
+        spawnCount = 0;
+        totalSpawns = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (DateTimeOffset.UtcNow.ToUnixTimeSeconds() - lastUpdate >= 5)
+        lastUpdate += Time.deltaTime;
+        if (lastUpdate >= levels[PlayerInfo.level].enemySpawnTime)
         {
-            lastUpdate = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
-            Instantiate(enemyTypes[0], new Vector3(max.x, GetRandomPosition(min.y, max.y)), Quaternion.identity);
+            if (lastSpawn >= 0.2)
+            {
+                if (spawnCount >= levels[PlayerInfo.level].spawnsPerTime)
+                {
+                    spawnCount = 0;
+                    lastUpdate = 0;
+                }
+                else
+                {
+                    spawnCount++;
+                    totalSpawns++;
+                    lastSpawn = 0;
+                    Vector3 spawnPosition = new Vector3(max.x, GetRandomPosition(min.y, max.y));
+                    Instantiate(enemyTypes[0], spawnPosition, Quaternion.identity);
+                }
+            }
+            else
+            {
+                lastSpawn += Time.deltaTime;
+            }
+            if (levels[PlayerInfo.level].maxEnemies == totalSpawns)
+            {
+                if (PlayerInfo.level + 1 < levels.Count)
+                {
+                    PlayerInfo.level++;
+                    totalSpawns = 0;
+                }
+                else
+                {
+                    totalSpawns = 0;
+                }
+            }
         }
     }
 
