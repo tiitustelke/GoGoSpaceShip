@@ -8,6 +8,7 @@ public class EnemySpawner : MonoBehaviour
     long lastUpdate;
     Vector2 min, max;
     public GameObject[] enemyTypes;
+    public GameObject boss;
 
     // Start is called before the first frame update
     void Start()
@@ -15,6 +16,7 @@ public class EnemySpawner : MonoBehaviour
         min = Camera.main.ViewportToWorldPoint(new Vector3(0, 0));
         max = Camera.main.ViewportToWorldPoint(new Vector3(1, 1));
         lastUpdate = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+        //boss = GameObject.Find()
     }
 
     // Update is called once per frame
