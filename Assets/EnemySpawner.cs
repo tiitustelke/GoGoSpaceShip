@@ -12,7 +12,7 @@ public class EnemySpawner : MonoBehaviour
 
     private int spawnCount, totalSpawns;
 
-    public GameObject[] enemyTypes;
+    public GameObject[] enemyTypes, bossTypes;
 
     // Start is called before the first frame update
     void Start()

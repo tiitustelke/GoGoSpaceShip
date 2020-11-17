@@ -146,7 +146,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shoot_effect: {fileID: 100002, guid: 565cdc2ed7b030a41accd8f00ae59a50, type: 3}
   hit_effect: {fileID: 100002, guid: cafecd3fc3b761c45bb1553f35cf5c96, type: 3}
-  firing_ship: {fileID: 0}
+  firing_ship: {fileID: 2976149089689928828, guid: d0e6ce19444ccae4ab4895e8782d133f,
+    type: 3}
 --- !u!96 &9600000
 TrailRenderer:
   serializedVersion: 2
