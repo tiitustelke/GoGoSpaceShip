@@ -9,6 +9,8 @@ public class PlayerInfo
 
     public static int level { get; set; }
 
+    public static float health { get; set; }
+
     public string Name;
 
     public int Score;

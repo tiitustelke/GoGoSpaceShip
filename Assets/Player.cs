@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 public class Player : MonoBehaviour
 {
     float movementSpeed = 5f;
-    float health = 100f;
 
     Vector2 min, max;
 
@@ -18,6 +17,8 @@ public class Player : MonoBehaviour
         float camDistance = Vector3.Distance(transform.position, Camera.main.transform.position);
         min = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, camDistance));
         max = Camera.main.ViewportToWorldPoint(new Vector3(1, 1, camDistance));
+
+        PlayerInfo.health = 100f;
     }
 
     // Update is called once per frame
@@ -49,9 +50,9 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            health -= collision.gameObject.GetComponent<Enemy>().damage;
+            PlayerInfo.health -= collision.gameObject.GetComponent<Enemy>().damage;
             Destroy(collision.gameObject);
-            if (health <= 0) // The player is killed, load game over scene
+            if (PlayerInfo.health <= 0) // The player is killed, load game over scene
             {
                 SceneManager.LoadScene("GameOver");
             }
