@@ -5,8 +5,13 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    long lastUpdate;
+    private float lastUpdate, lastSpawn;
     Vector2 min, max;
+
+    private List<Level> levels;
+
+    private int spawnCount, totalSpawns;
+
     public GameObject[] enemyTypes;
 
     // Start is called before the first frame update
@@ -14,22 +19,57 @@ public class EnemySpawner : MonoBehaviour
     {
         min = Camera.main.ViewportToWorldPoint(new Vector3(0, 0));
         max = Camera.main.ViewportToWorldPoint(new Vector3(1, 1));
-        lastUpdate = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+
+        levels = new List<Level>
+        {
+            new Level(2, 3, 30),
+            new Level(1, 4, 20)
+        };
+
+        lastUpdate = 0;
+        lastSpawn = 0;
+        spawnCount = 0;
+        totalSpawns = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (DateTimeOffset.UtcNow.ToUnixTimeSeconds() - lastUpdate >= 5)
+        lastUpdate += Time.deltaTime;
+        if (lastUpdate >= levels[PlayerInfo.level].enemySpawnTime)
         {
-            lastUpdate = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
-            Instantiate(enemyTypes[0], new Vector3(max.x, GetRandomPosition(min.y, max.y)), Quaternion.identity);
+            if (lastSpawn >= 0.3)
+            {
+                if (spawnCount >= levels[PlayerInfo.level].spawnsPerTime)
+                {
+                    spawnCount = 0;
+                    lastUpdate = 0;
+                }
+                else
+                {
+                    spawnCount++;
+                    totalSpawns++;
+                    lastSpawn = 0;
+                    Vector3 spawnPosition = new Vector3(max.x, UnityEngine.Random.Range(min.y, max.y));
+                    Instantiate(enemyTypes[UnityEngine.Random.Range(0, PlayerInfo.level + 1)], spawnPosition, Quaternion.identity);
+                }
+            }
+            else
+            {
+                lastSpawn += Time.deltaTime;
+            }
+            if (levels[PlayerInfo.level].maxEnemies == totalSpawns)
+            {
+                if (PlayerInfo.level + 1 < levels.Count)
+                {
+                    PlayerInfo.level++;
+                    totalSpawns = 0;
+                }
+                else
+                {
+                    totalSpawns = 0;
+                }
+            }
         }
-    }
-
-    private float GetRandomPosition(float min, float max)
-    {
-        System.Random random = new System.Random();
-        return (float)random.NextDouble() * (max - min) + min;
     }
 }
