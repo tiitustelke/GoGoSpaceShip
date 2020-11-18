@@ -38,7 +38,7 @@ public class EnemySpawner : MonoBehaviour
         lastUpdate += Time.deltaTime;
         if (lastUpdate >= levels[PlayerInfo.level].enemySpawnTime)
         {
-            if (lastSpawn >= 0.2)
+            if (lastSpawn >= 0.3)
             {
                 if (spawnCount >= levels[PlayerInfo.level].spawnsPerTime)
                 {
@@ -50,8 +50,8 @@ public class EnemySpawner : MonoBehaviour
                     spawnCount++;
                     totalSpawns++;
                     lastSpawn = 0;
-                    Vector3 spawnPosition = new Vector3(max.x, GetRandomPosition(min.y, max.y));
-                    Instantiate(enemyTypes[0], spawnPosition, Quaternion.identity);
+                    Vector3 spawnPosition = new Vector3(max.x, UnityEngine.Random.Range(min.y, max.y));
+                    Instantiate(enemyTypes[UnityEngine.Random.Range(0, PlayerInfo.level + 1)], spawnPosition, Quaternion.identity);
                 }
             }
             else
@@ -71,11 +71,5 @@ public class EnemySpawner : MonoBehaviour
                 }
             }
         }
-    }
-
-    private float GetRandomPosition(float min, float max)
-    {
-        System.Random random = new System.Random();
-        return (float)random.NextDouble() * (max - min) + min;
     }
 }
