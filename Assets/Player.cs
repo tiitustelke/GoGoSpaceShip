@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
-    float movementSpeed = 4f;
+    float movementSpeed = 5f;
     float health = 100f;
 
     Vector2 min, max;
@@ -40,7 +41,7 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Instantiate(ammo, transform.position + transform.forward * 100, transform.rotation);
+            Instantiate(ammo, transform.position + transform.up * 0.5f, transform.rotation);
         }
     }
 
@@ -52,7 +53,7 @@ public class Player : MonoBehaviour
             Destroy(collision.gameObject);
             if (health <= 0) // The player is killed, load game over scene
             {
-
+                SceneManager.LoadScene("GameOver");
             }
         }
     }
