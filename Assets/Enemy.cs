@@ -12,6 +12,8 @@ public class Enemy : MonoBehaviour
     private float movingTime;
     private bool movingUp;
 
+    public GameObject explosion;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -50,6 +52,8 @@ public class Enemy : MonoBehaviour
         if (health == 0)
         {
             PlayerInfo.score++;
+            ParticleSystem explosionEffect = Instantiate(explosion, transform.position, transform.rotation).GetComponent<ParticleSystem>();
+            explosionEffect.Play();
             Destroy(gameObject);
         }
     }
