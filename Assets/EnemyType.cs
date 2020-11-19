@@ -2,5 +2,6 @@
 public enum EnemyType
 {
     Static,
-    Moving
+    Moving,
+    Boss
 }

@@ -58,4 +58,7 @@ public class Player : MonoBehaviour
             }
         }
     }
+    public void DecreaseHealth(float dmg)
+    {
+    }
 }
