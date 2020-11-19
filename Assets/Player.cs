@@ -49,12 +49,20 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            health -= collision.gameObject.GetComponent<Enemy>().damage;
+            DecreaseHealth(collision.gameObject.GetComponent<Enemy>().damage);
             Destroy(collision.gameObject);
-            if (health <= 0) // The player is killed, load game over scene
-            {
-                SceneManager.LoadScene("GameOver");
-            }
+        }
+        /*else if (collision.gameObject.CompareTag("Projectile"))
+        {
+            DecreaseHealth
+        }*/
+    }
+    public void DecreaseHealth(float dmg)
+    {
+        health -= dmg;
+        if (health <= 0) // The player is killed, load game over scene
+        {
+            SceneManager.LoadScene("GameOver");
         }
     }
 }
