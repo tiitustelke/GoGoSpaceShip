@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5696678319555001870}
   - component: {fileID: 3401114393993137765}
   - component: {fileID: 4174162818846770247}
-  - component: {fileID: 1508154138038997813}
+  - component: {fileID: 4806867279378681131}
   m_Layer: 12
   m_Name: Ammo
   m_TagString: Ammo
@@ -121,7 +121,7 @@ CircleCollider2D:
   m_Offset: {x: 0.09633867, y: 0.33761087}
   serializedVersion: 2
   m_Radius: 1.5611085
---- !u!114 &1508154138038997813
+--- !u!114 &4806867279378681131
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -130,6 +130,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 6945883726767315117}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9464f99d2ba504d58862c4c93682c4a2, type: 3}
+  m_Script: {fileID: 11500000, guid: 9c54df3ec33794c2a889833c62020210, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 5
+  damage: 20

@@ -10,7 +10,7 @@ public class Projectile : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
-		dmg = firing_ship.GetComponent<Enemy>().damage;
+		dmg = firing_ship.GetComponent<Enemy>().hitDamage;
 		GameObject obj = (GameObject) Instantiate(shoot_effect, transform.position, Quaternion.identity); //Spawn muzzle flash
 		
 		//Destroy(gameObject, 5f); //Bullet will despawn after 5 seconds
@@ -25,12 +25,12 @@ public class Projectile : MonoBehaviour {
 	void OnCollisionEnter2D(Collision2D col) {
 		Debug.Log(firing_ship);
 		//Don't want to collide with the ship that's shooting this thing, nor another projectile.
-		if (col.gameObject.CompareTag("Player")) {
+		/*if (col.gameObject.CompareTag("Player")) {
 			Debug.Log(firing_ship.GetComponent<Enemy>().damage);
 			Instantiate(hit_effect, transform.position, Quaternion.identity);
 			col.gameObject.GetComponent<Player>().DecreaseHealth(firing_ship.GetComponent<Enemy>().damage);
 			Destroy(gameObject);
-		}
+		}*/
 	}
 	private void OnBecameInvisible()
 	{

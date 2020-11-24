@@ -42,7 +42,9 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Instantiate(ammo, transform.position + transform.up * 0.5f, transform.rotation);
+            GameObject playerAmmo = Instantiate(ammo, transform.position + transform.up * 0.5f, transform.rotation);
+            Physics2D.IgnoreCollision(GetComponent<Collider2D>(), playerAmmo.GetComponent<Collider2D>());
+            playerAmmo.GetComponent<Weapon>().damage = 20;
         }
     }
 
@@ -50,15 +52,18 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            PlayerInfo.health -= collision.gameObject.GetComponent<Enemy>().damage;
+            Debug.Log("Test");
+            DecreaseHealth(collision.gameObject.GetComponent<Enemy>().hitDamage);
             Destroy(collision.gameObject);
-            if (PlayerInfo.health <= 0) // The player is killed, load game over scene
-            {
-                SceneManager.LoadScene("GameOver");
-            }
         }
     }
-    public void DecreaseHealth(float dmg)
+
+    public void DecreaseHealth(float damage)
     {
+        PlayerInfo.health -= damage;
+        if (PlayerInfo.health <= 0) // The player is killed, load game over scene
+        {
+            SceneManager.LoadScene("GameOver");
+        }
     }
 }

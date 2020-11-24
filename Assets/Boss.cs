@@ -4,90 +4,49 @@ using UnityEngine;
 
 public class Boss : Enemy
 {
-    private readonly float directionChangeTime = 3f;
-    private float latestDirectionTIme;
-    //public float movementSpeed = 5f;
-    private Vector2 movementDirection, movement;
     public GameObject ammo;
     public float fireRate;
-    private float fireTime = 0;
+
+    float fireTime = 0;
+
+    Vector3 targetPos, centerPos;
+
     // Start is called before the first frame update
     void Start()
     {
-        
-        latestDirectionTIme = 0f;
-        //min = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, camDistance));
-        //max = Camera.main.ViewportToWorldPoint(new Vector3(1, 1, camDistance));
+        centerPos = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width / 2, Screen.height / 2));
+        targetPos = centerPos;
     }
+
     void Update()
     {
-        /*float camDistance = Vector3.Distance(transform.position, Camera.main.transform.position);
-        if (camDistance < 10f)
+        if (Vector2.Distance(transform.position, targetPos) < 0.01)
         {
-            latestDirectionTIme = Time.time;
-            GetNewMovementVector();
-        }*/
-        if (Time.time - latestDirectionTIme > directionChangeTime) 
-        {
-            latestDirectionTIme = Time.time;
-            GetNewMovementVector();
-        } /*else if (transform.position.x < 2f)
-        {
-            transform.position += Vector3.right * Time.deltaTime * movementSpeed;
-        }*/
-        
-        transform.position = new Vector2(transform.position.x + (movement.x * Time.deltaTime),
-        transform.position.y + (movement.y * Time.deltaTime));
-        //transform.position = new Vector3(Mathf.Clamp(transform.position.x, -2f, 2f), Mathf.Clamp(transform.position.y, -2f, 2f), transform.position.z);
-        fireTime += Time.deltaTime;
-        switch (type)
-        {
-            case EnemyType.Boss:
-                //Debug.Log(fireTime);
-                if ((fireRate - fireTime) < 0)
-                {
-                    Debug.Log("Testi");
-                    Shoot();
-                    fireTime = 0;
-                }
-                //Debug.Log("testi2");
-                break;
+            if (targetPos == centerPos)
+            {
+                float angle = Random.Range(0, 2 * Mathf.PI);
+                targetPos = new Vector2(transform.position.x + (Mathf.Cos(angle) * 3), transform.position.y + (Mathf.Sin(angle) * 3));
+            }
+            else
+            {
+                targetPos = centerPos;
+            }
         }
-        //transform.position = movement * maxSpeed * Time.deltaTime;
+        transform.position = Vector2.MoveTowards(transform.position, targetPos, Time.deltaTime * 2f);
+
+        if (fireTime <= 0)
+        {
+            Shoot();
+            fireTime = fireRate;
+        }
+        fireTime -= Time.deltaTime;
     }
-    void GetNewMovementVector()
-    {
-        if (transform.position.x < 2f)
-        {
-            movementDirection = Vector3.right;
-        }
-        else if (transform.position.x > 7f)
-        {
-            movementDirection = Vector3.left;
-        }
-        else if (transform.position.y > 3.2f)
-        {
-            movementDirection = Vector3.down;
-        }
-        else if (transform.position.y < -3.2f)
-        {
-            movementDirection = Vector3.up;
-        }
-        else
-        {
-            movementDirection = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
-        }
-        
-        movement = movementDirection * movementSpeed;
-    }
+
     void Shoot()
     {
-        Debug.Log("Boss shooting");
-        Instantiate(ammo, transform.position + transform.forward * 100, transform.rotation);
-    }
-    private void FixedUpdate()
-    {
-        
+        GameObject enemyAmmo = Instantiate(ammo, transform.position + transform.up * 2.0f, Quaternion.identity);
+        Physics2D.IgnoreCollision(gameObject.GetComponent<Collider2D>(), enemyAmmo.GetComponent<Collider2D>());
+        enemyAmmo.GetComponent<Weapon>().enemyType = EnemyType.Boss;
     }
 
 }

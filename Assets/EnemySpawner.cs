@@ -14,6 +14,8 @@ public class EnemySpawner : MonoBehaviour
 
     public GameObject[] enemyTypes, bossTypes;
 
+    GameObject boss;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,41 +37,50 @@ public class EnemySpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        lastUpdate += Time.deltaTime;
-        if (lastUpdate >= levels[PlayerInfo.level].enemySpawnTime)
+        if (!boss)
         {
-            if (lastSpawn >= 0.3)
+            lastUpdate += Time.deltaTime;
+            if (lastUpdate >= levels[PlayerInfo.level].enemySpawnTime)
             {
-                if (spawnCount >= levels[PlayerInfo.level].spawnsPerTime)
+                if (lastSpawn >= 0.3)
                 {
-                    spawnCount = 0;
-                    lastUpdate = 0;
+                    if (spawnCount >= levels[PlayerInfo.level].spawnsPerTime)
+                    {
+                        spawnCount = 0;
+                        lastUpdate = 0;
+                    }
+                    else
+                    {
+                        spawnCount++;
+                        totalSpawns++;
+                        lastSpawn = 0;
+                        Vector3 spawnPosition = new Vector3(max.x, UnityEngine.Random.Range(min.y, max.y));
+                        Instantiate(enemyTypes[UnityEngine.Random.Range(0, PlayerInfo.level + 1)], spawnPosition, Quaternion.identity);
+                    }
                 }
                 else
                 {
-                    spawnCount++;
-                    totalSpawns++;
-                    lastSpawn = 0;
-                    Vector3 spawnPosition = new Vector3(max.x, UnityEngine.Random.Range(min.y, max.y));
-                    Instantiate(enemyTypes[UnityEngine.Random.Range(0, PlayerInfo.level + 1)], spawnPosition, Quaternion.identity);
+                    lastSpawn += Time.deltaTime;
                 }
-            }
-            else
-            {
-                lastSpawn += Time.deltaTime;
-            }
-            if (levels[PlayerInfo.level].maxEnemies == totalSpawns)
-            {
-                if (PlayerInfo.level + 1 < levels.Count)
+                if (levels[PlayerInfo.level].maxEnemies == totalSpawns)
                 {
-                    PlayerInfo.level++;
-                    totalSpawns = 0;
-                }
-                else
-                {
-                    totalSpawns = 0;
+                    if (PlayerInfo.level + 1 < levels.Count)
+                    {
+                        PlayerInfo.level++;
+                        totalSpawns = 0;
+                    }
+                    else
+                    {
+                        totalSpawns = 0;
+                    }
+                    Invoke(nameof(SpawnBoss), 2);
                 }
             }
         }
+    }
+
+    void SpawnBoss()
+    {
+        boss = Instantiate(bossTypes[0], new Vector3(max.x, max.y / 2), bossTypes[0].transform.rotation);
     }
 }

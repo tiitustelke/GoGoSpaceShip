@@ -721,6 +721,8 @@ MonoBehaviour:
   enemyTypes:
   - {fileID: 8921003944761389105, guid: 9655f5286b0bd48c3bd7262c28c664ca, type: 3}
   - {fileID: 477984735813994770, guid: f4cec0b3b718b40c18bad23d0872c629, type: 3}
+  bossTypes:
+  - {fileID: 2976149089689928828, guid: d0e6ce19444ccae4ab4895e8782d133f, type: 3}
 --- !u!4 &1971951787
 Transform:
   m_ObjectHideFlags: 0
