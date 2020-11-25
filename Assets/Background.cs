@@ -15,10 +15,10 @@ public class Background : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        backgroundRend.material.mainTextureOffset += new Vector2(backGroundSpeed * Time.deltaTime, 0f);
+        backgroundRend.material.mainTextureOffset += new Vector2(backGroundSpeed * Time.deltaTime, 0f);      //moves renderers material
     }
 
-    public void SetBgSpeed(float speed)
+    public void SetBgSpeed(float speed)         //used to set the speed of background movement
     {
         this.backGroundSpeed = speed;
     }

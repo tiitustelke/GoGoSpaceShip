@@ -59,8 +59,18 @@ public class EnemySpawner : MonoBehaviour
                         spawnCount++;
                         totalSpawns++;
                         lastSpawn = 0;
-                        Vector3 spawnPosition = new Vector3(max.x, UnityEngine.Random.Range(min.y, max.y));
-                        Instantiate(enemyTypes[UnityEngine.Random.Range(0, PlayerInfo.level + 1)], spawnPosition, Quaternion.identity);
+                        Vector3 spawnPosition;
+                        int type = UnityEngine.Random.Range(0, PlayerInfo.level + 1);
+                        if (type == 1)      //spawn position is further from edges of screen if enemy is of moving type
+                        {
+                            spawnPosition = new Vector3(max.x, UnityEngine.Random.Range(min.y + 1, max.y - 2.5f));
+                        }
+                        else
+                        {
+                            spawnPosition = new Vector3(max.x, UnityEngine.Random.Range(min.y, max.y));
+                        }
+
+                        Instantiate(enemyTypes[type], spawnPosition, Quaternion.identity);
                     }
                 }
                 else
@@ -88,6 +98,8 @@ public class EnemySpawner : MonoBehaviour
     {
         int r = UnityEngine.Random.Range(0, 2);
         boss = Instantiate(bossTypes[r], new Vector3(max.x, max.y / 2), bossTypes[r].transform.rotation);
+        
+        //Boss' health is increased according to current level
         multiplier = 1f + (0.05f * PlayerInfo.level);
         boss.GetComponent<Boss>().health = boss.GetComponent<Boss>().health * multiplier;
         background.SetBgSpeed(0f);

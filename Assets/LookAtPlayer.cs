@@ -9,15 +9,14 @@ public class LookAtPlayer : MonoBehaviour
     void Start()
     {
         player = GameObject.Find("Player");
-        Debug.Log(GameObject.Find("Player"));
     }
 
     // Update is called once per frame
     void Update()
     {
         Vector2 vectorToTarget = player.transform.position - transform.position;
-        float angle2 = (Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg) - 90;
-        Quaternion q = Quaternion.AngleAxis(angle2, Vector3.forward);
-        transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * 5f);
+        float angle2 = (Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg) - 90;      //gets angle to player
+        Quaternion q = Quaternion.AngleAxis(angle2, Vector3.forward);                               //how much to rotate
+        transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * 5f);          //rotates toward player
     }
 }
