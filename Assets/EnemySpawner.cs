@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    private float lastUpdate, lastSpawn;
+    private float lastUpdate, lastSpawn, multiplier;
     Vector2 min, max;
 
     private List<Level> levels;
@@ -15,6 +15,8 @@ public class EnemySpawner : MonoBehaviour
     public GameObject[] enemyTypes, bossTypes;
 
     GameObject boss;
+
+    private Background background;
 
     // Start is called before the first frame update
     void Start()
@@ -32,6 +34,8 @@ public class EnemySpawner : MonoBehaviour
         lastSpawn = 0;
         spawnCount = 0;
         totalSpawns = 0;
+
+        background = GameObject.Find("Background").GetComponent<Background>();
     }
 
     // Update is called once per frame
@@ -39,6 +43,7 @@ public class EnemySpawner : MonoBehaviour
     {
         if (!boss)
         {
+            background.SetBgSpeed(2f);
             lastUpdate += Time.deltaTime;
             if (lastUpdate >= levels[PlayerInfo.level].enemySpawnTime)
             {
@@ -81,6 +86,10 @@ public class EnemySpawner : MonoBehaviour
 
     void SpawnBoss()
     {
-        boss = Instantiate(bossTypes[0], new Vector3(max.x, max.y / 2), bossTypes[0].transform.rotation);
+        int r = UnityEngine.Random.Range(0, 2);
+        boss = Instantiate(bossTypes[r], new Vector3(max.x, max.y / 2), bossTypes[r].transform.rotation);
+        multiplier = 1f + (0.05f * PlayerInfo.level);
+        boss.GetComponent<Boss>().health = boss.GetComponent<Boss>().health * multiplier;
+        background.SetBgSpeed(0f);
     }
 }

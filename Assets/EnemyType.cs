@@ -4,5 +4,6 @@ public enum EnemyType
     None,
     Static,
     Moving,
-    Boss
+    Boss,
+    Miniboss
 }

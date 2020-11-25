@@ -6,7 +6,7 @@ public class Boss : Enemy
 {
     public GameObject ammo;
     public float fireRate;
-
+    private GameObject player;
     float fireTime = 0;
 
     Vector3 targetPos, centerPos;
@@ -14,18 +14,30 @@ public class Boss : Enemy
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.Find("Player");
         centerPos = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width / 2, Screen.height / 2));
         targetPos = centerPos;
     }
 
     void Update()
     {
+        player = GameObject.Find("Player");
+        float angle = Random.Range(0, 2 * Mathf.PI);
+
         if (Vector2.Distance(transform.position, targetPos) < 0.01)
         {
             if (targetPos == centerPos)
             {
-                float angle = Random.Range(0, 2 * Mathf.PI);
-                targetPos = new Vector2(transform.position.x + (Mathf.Cos(angle) * 3), transform.position.y + (Mathf.Sin(angle) * 3));
+                switch (type)
+                {
+                    case EnemyType.Miniboss:
+                        targetPos = new Vector2(transform.position.x + (Mathf.Cos(angle) * 3), player.transform.position.y);
+                        break;
+                    case EnemyType.Boss:
+                        targetPos = new Vector2(transform.position.x + (Mathf.Cos(angle) * 3), transform.position.y + (Mathf.Sin(angle) * 3));
+                        break;
+                }
+
             }
             else
             {
@@ -33,7 +45,6 @@ public class Boss : Enemy
             }
         }
         transform.position = Vector2.MoveTowards(transform.position, targetPos, Time.deltaTime * 2f);
-
         if (fireTime <= 0)
         {
             Shoot();

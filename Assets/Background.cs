@@ -17,4 +17,9 @@ public class Background : MonoBehaviour
     {
         backgroundRend.material.mainTextureOffset += new Vector2(backGroundSpeed * Time.deltaTime, 0f);
     }
+
+    public void SetBgSpeed(float speed)
+    {
+        this.backGroundSpeed = speed;
+    }
 }

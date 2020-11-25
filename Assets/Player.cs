@@ -52,7 +52,6 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            Debug.Log("Test");
             DecreaseHealth(collision.gameObject.GetComponent<Enemy>().hitDamage);
             Destroy(collision.gameObject);
         }

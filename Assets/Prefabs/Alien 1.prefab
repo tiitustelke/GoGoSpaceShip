@@ -103,7 +103,7 @@ MonoBehaviour:
   health: 200
   explosion: {fileID: 5745571014550976779, guid: d3816495d4fed4ecdbdd179c5c39fa8b,
     type: 3}
-  ammo: {fileID: 6945883726767315117, guid: bdb5184f275dd4b789cfea2d6243a85f, type: 3}
+  ammo: {fileID: 100000, guid: bfe0ba4acc768a5448d46a6c63d8106a, type: 3}
   fireRate: 1
 --- !u!50 &2976149089689928803
 Rigidbody2D:
