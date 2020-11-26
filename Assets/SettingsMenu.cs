@@ -24,6 +24,7 @@ public class SettingsMenu : MonoBehaviour
         volumeSlider = GameObject.Find("VolumeSlider").GetComponent<Slider>();
 
         volumeSlider.onValueChanged.AddListener(delegate { OnValueChanged(); });
+
     }
 
     public void GoBack()

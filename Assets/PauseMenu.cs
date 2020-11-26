@@ -8,21 +8,21 @@ public class PauseMenu : MonoBehaviour
 {
     public static bool GameIsPaused = false;
 
-    public PauseMenu pauseMenu;
+    public GameObject PauseMenuUI;
     Button menuButton;
     Button resumeButton;
     Button quitButton;
-    /*BUTTONIN PUUTTUU VIELÄ*/
-    /*Toimii nyt vaan kun unitysta pause menulle valittu pausemenu*/
+
 
     void Start()
     {
-        pauseMenu = GameObject.Find("PauseMenu").GetComponent<PauseMenu>();
+       
+        Debug.Log("PauseMenuWorking");
         menuButton = GameObject.Find("MenuButton").GetComponent<Button>();
         resumeButton = GameObject.Find("ResumeButton").GetComponent<Button>();
         quitButton = GameObject.Find("PauseQuitButton").GetComponent<Button>();
 
-        menuButton.onClick.AddListener(()=> GoToMenu());
+        menuButton.onClick.AddListener(delegate { GoToMenu(); });
         resumeButton.onClick.AddListener(() => Resume());
         quitButton.onClick.AddListener(() => QuitGame());
     }
@@ -33,12 +33,12 @@ public class PauseMenu : MonoBehaviour
         {
             if (GameIsPaused)
             {
-                Debug.Log("Click");
+                Debug.Log("Resume game..");
                 Resume();
             }
             else
             {
-                Debug.Log("Click");
+                Debug.Log("Pause game..");
                 Pause();
             }
         }
@@ -46,14 +46,15 @@ public class PauseMenu : MonoBehaviour
 
     public void Resume()
     {
-        pauseMenu.gameObject.SetActive(false);
+        PauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         GameIsPaused = false;
+        
     }
 
-    void Pause()
+    public void Pause()
     {
-        pauseMenu.gameObject.SetActive(true);
+        PauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         GameIsPaused = true;
     }
@@ -64,9 +65,10 @@ public class PauseMenu : MonoBehaviour
         Application.Quit();
     }
 
-    void GoToMenu()
+    public void GoToMenu()
     {
         Debug.Log("Menu..");
+        Time.timeScale = 1f;
         SceneManager.LoadScene("MainMenu");
     }
 }

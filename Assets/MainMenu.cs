@@ -6,10 +6,10 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
-    Button playButton;
-    Button quitButton;
-    Button settingsButton;
-    Button scoreButton;
+    private Button playButton;
+    private Button quitButton;
+    private Button settingsButton;
+    private Button scoreButton;
 
     MainMenu mainMenu;
     SettingsMenu settingsMenu;
