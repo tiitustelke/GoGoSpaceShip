@@ -38,7 +38,7 @@ public class Weapon : MonoBehaviour
             case "Player":
                 collision.gameObject.GetComponent<Player>().DecreaseHealth(damage);
                 break;
-            default:
+            case "Enemy":
                 collision.gameObject.GetComponent<Enemy>().DecreaseHealth(damage);
                 break;
         }

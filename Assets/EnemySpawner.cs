@@ -10,13 +10,11 @@ public class EnemySpawner : MonoBehaviour
 
     private List<Level> levels;
 
-    private int spawnCount, totalSpawns;
+    private int spawnCount, totalSpawns, lastLevel;
 
     public GameObject[] enemyTypes, bossTypes;
 
     GameObject boss;
-
-    private Background background;
 
     // Start is called before the first frame update
     void Start()
@@ -33,9 +31,8 @@ public class EnemySpawner : MonoBehaviour
         lastUpdate = 0;
         lastSpawn = 0;
         spawnCount = 0;
+        lastLevel = 0;
         totalSpawns = 0;
-
-        background = GameObject.Find("Background").GetComponent<Background>();
     }
 
     // Update is called once per frame
@@ -43,7 +40,6 @@ public class EnemySpawner : MonoBehaviour
     {
         if (!boss)
         {
-            background.SetBgSpeed(2f);
             lastUpdate += Time.deltaTime;
             if (lastUpdate >= levels[PlayerInfo.level].enemySpawnTime)
             {
@@ -79,15 +75,13 @@ public class EnemySpawner : MonoBehaviour
                 }
                 if (levels[PlayerInfo.level].maxEnemies == totalSpawns)
                 {
+                    lastLevel = PlayerInfo.level;
                     if (PlayerInfo.level + 1 < levels.Count)
                     {
                         PlayerInfo.level++;
-                        totalSpawns = 0;
                     }
-                    else
-                    {
-                        totalSpawns = 0;
-                    }
+                    totalSpawns = 0;
+                    lastSpawn -= 2;
                     Invoke(nameof(SpawnBoss), 2);
                 }
             }
@@ -96,12 +90,10 @@ public class EnemySpawner : MonoBehaviour
 
     void SpawnBoss()
     {
-        int r = UnityEngine.Random.Range(0, 2);
-        boss = Instantiate(bossTypes[r], new Vector3(max.x, max.y / 2), bossTypes[r].transform.rotation);
+        boss = Instantiate(bossTypes[lastLevel], new Vector3(max.x, max.y - ((max.y - min.y) / 2)), bossTypes[lastLevel].transform.rotation);
         
         //Boss' health is increased according to current level
         multiplier = 1f + (0.1f * PlayerInfo.level);
         boss.GetComponent<Boss>().health = boss.GetComponent<Boss>().health * multiplier;
-        background.SetBgSpeed(0f);
     }
 }
