@@ -135,7 +135,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   movementSpeed: 5
-  hitDamage: 0
+  hitDamage: 25
   health: 40
   explosion: {fileID: 5745571014550976779, guid: d3816495d4fed4ecdbdd179c5c39fa8b,
     type: 3}
