@@ -100,7 +100,7 @@ public class EnemySpawner : MonoBehaviour
         boss = Instantiate(bossTypes[r], new Vector3(max.x, max.y / 2), bossTypes[r].transform.rotation);
         
         //Boss' health is increased according to current level
-        multiplier = 1f + (0.05f * PlayerInfo.level);
+        multiplier = 1f + (0.1f * PlayerInfo.level);
         boss.GetComponent<Boss>().health = boss.GetComponent<Boss>().health * multiplier;
         background.SetBgSpeed(0f);
     }
