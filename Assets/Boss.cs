@@ -1,7 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
+/// <summary>
+/// This class does the logic for boss movement and shooting.
+/// </summary>
 public class Boss : Enemy
 {
     public GameObject ammo;
@@ -17,6 +20,7 @@ public class Boss : Enemy
         player = GameObject.Find("Player");
         centerPos = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width / 2, Screen.height / 2));
         targetPos = centerPos;
+        sc = GameObject.Find("Score").GetComponent<Text>();
     }
 
     void Update()

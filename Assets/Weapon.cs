@@ -43,7 +43,6 @@ public class Weapon : MonoBehaviour
                 break;
         }
         Destroy(gameObject);
-
     }
 
     private void OnBecameInvisible()

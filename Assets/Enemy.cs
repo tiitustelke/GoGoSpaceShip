@@ -11,11 +11,11 @@ public class Enemy : MonoBehaviour
     public float health;
 
     private float movingTime;
-    private bool movingUp;
+    private bool movingUp, dead = false;
 
     public GameObject explosion;
 
-    private Text sc;
+    public static Text sc;
 
     // Start is called before the first frame update
     void Start()
@@ -53,13 +53,19 @@ public class Enemy : MonoBehaviour
     public void DecreaseHealth(float damage)
     {
         health -= damage;
-        if (health <= 0)
+        if (health <= 0 && !dead)
         {
+            dead = true;
             ParticleSystem explosionEffect = Instantiate(explosion, transform.position, transform.rotation).GetComponent<ParticleSystem>();
             explosionEffect.Play();
             Destroy(gameObject);
             PlayerInfo.score++;
-            sc.text = PlayerInfo.score.ToString();
+            UpdateScore();
         }
+    }
+
+    private void UpdateScore()
+    {
+        sc.text = PlayerInfo.score.ToString();
     }
 }

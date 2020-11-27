@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class GameOver : MonoBehaviour
 {
-    public InputField userName = GameObject.Find("UserInput").GetComponent<InputField>();
+    public InputField userName;
     
 
     public Text UserInput;
@@ -11,6 +11,7 @@ public class GameOver : MonoBehaviour
    
     void Start()
     {
+        userName = GameObject.Find("UserInput").GetComponent<InputField>();
         userName.text = "moro";
         Debug.Log("Game Over....");
         
