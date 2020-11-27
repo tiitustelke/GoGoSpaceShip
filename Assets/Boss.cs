@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 /// <summary>
-/// This class does the logic for boss movement and shooting.
+/// <para>This class does the logic for boss movement and shooting.</para>
+/// </para>Inherits enemy including method <see cref="Enemy.DecreaseHealth(float)"/></para>
+/// </para>See <see cref="Enemy"/></para>
 /// </summary>
 public class Boss : Enemy
 {
@@ -15,6 +17,10 @@ public class Boss : Enemy
     Vector3 targetPos, centerPos;
 
     // Start is called before the first frame update
+    /// <summary>
+    /// <para>In start method the player GameObject, score text field and center position of screen is initialized </para>
+    /// <para>Target position where player will move is initially the center of screen</para>
+    /// </summary>
     void Start()
     {
         player = GameObject.Find("Player");
@@ -22,7 +28,10 @@ public class Boss : Enemy
         targetPos = centerPos;
         sc = GameObject.Find("Score").GetComponent<Text>();
     }
-
+    /// <summary>
+    /// In update method boss movement is determined according the boss type.
+    /// The boss will move between a random position and the center of map
+    /// </summary>
     void Update()
     {
         float angle = Random.Range(0, 2 * Mathf.PI);
@@ -59,7 +68,9 @@ public class Boss : Enemy
         //Updates time to fireTime
         fireTime -= Time.deltaTime;
     }
-
+    /// <summary>
+    /// Shoot instatiates ammo and sets damage to it
+    /// </summary>
     void Shoot()
     {
         GameObject enemyAmmo = Instantiate(ammo, transform.position + transform.up * 2.0f, Quaternion.identity);

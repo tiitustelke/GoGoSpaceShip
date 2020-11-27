@@ -1,7 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//Thanks MadFireOn https://www.youtube.com/watch?v=32EIYs6Z18Q
+/// <summary>
+/// <para>This class if for movement of the background</para>
+/// <para>Thanks MadFireOn https://www.youtube.com/watch?v=32EIYs6Z18Q </para>
+/// </summary>
+
 public class Background : MonoBehaviour
 {
     public Renderer backgroundRend;
@@ -10,11 +14,14 @@ public class Background : MonoBehaviour
     {
         
     }
-
+    /// <summary>
+    /// <para>In update method background speed is varied according if there's a boss</para>
+    /// <para>The background simply works by moving the texture of the quad GameObject in background. The texture then repeats over and over again.</para>
+    /// </summary>
     // Update is called once per frame
     void Update()
     {
-        float backgroundSpeed = 2;
+        float backgroundSpeed = 2;      //speed of the background
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         if (enemies.Length == 1)
         {

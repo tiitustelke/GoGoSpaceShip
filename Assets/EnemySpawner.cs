@@ -10,7 +10,7 @@ public class EnemySpawner : MonoBehaviour
 
     private List<Level> levels;
 
-    private int spawnCount, totalSpawns, lastLevel;
+    private int spawnCount, totalSpawns, newBoss;
 
     public GameObject[] enemyTypes, bossTypes;
 
@@ -21,31 +21,34 @@ public class EnemySpawner : MonoBehaviour
     {
         min = Camera.main.ViewportToWorldPoint(new Vector3(0, 0));
         max = Camera.main.ViewportToWorldPoint(new Vector3(1, 1));
-
+        //levels have the amount of enemies to spawn, enemies to spawn at a time and how much time is between enemy spawns.
         levels = new List<Level>
         {
             new Level(2, 3, 30),
-            new Level(1, 4, 20)
+            new Level(2, 3, 30)
         };
-
+        PlayerInfo.level = 0;
         lastUpdate = 0;
         lastSpawn = 0;
         spawnCount = 0;
-        lastLevel = 0;
+        newBoss = 0;
         totalSpawns = 0;
     }
-
+    /// <summary>
+    /// In update method the two levels are changed according to mod 2 of the running level number.
+    /// More enemies to spawn during the level, at a time are added and time between enemy spawns is shortened.
+    /// </summary>
     // Update is called once per frame
     void Update()
     {
         if (!boss)
         {
             lastUpdate += Time.deltaTime;
-            if (lastUpdate >= levels[PlayerInfo.level].enemySpawnTime)
+            if (lastUpdate >= levels[PlayerInfo.level % 2].enemySpawnTime)
             {
                 if (lastSpawn >= 0.3)
                 {
-                    if (spawnCount >= levels[PlayerInfo.level].spawnsPerTime)
+                    if (spawnCount >= levels[PlayerInfo.level % 2].spawnsPerTime)
                     {
                         spawnCount = 0;
                         lastUpdate = 0;
@@ -56,7 +59,7 @@ public class EnemySpawner : MonoBehaviour
                         totalSpawns++;
                         lastSpawn = 0;
                         Vector3 spawnPosition;
-                        int type = UnityEngine.Random.Range(0, PlayerInfo.level + 1);
+                        int type = UnityEngine.Random.Range(0, 1);
                         if (type == 1)      //spawn position is further from edges of screen if enemy is of moving type
                         {
                             spawnPosition = new Vector3(max.x, UnityEngine.Random.Range(min.y + 1, max.y - 2.5f));
@@ -73,15 +76,16 @@ public class EnemySpawner : MonoBehaviour
                 {
                     lastSpawn += Time.deltaTime;
                 }
-                if (levels[PlayerInfo.level].maxEnemies == totalSpawns)
+                if (levels[PlayerInfo.level % 2].maxEnemies == totalSpawns)
                 {
-                    lastLevel = PlayerInfo.level;
-                    if (PlayerInfo.level + 1 < levels.Count)
-                    {
-                        PlayerInfo.level++;
-                    }
+                    PlayerInfo.level++;
                     totalSpawns = 0;
                     lastSpawn -= 2;
+                    int mod = PlayerInfo.level % 2;             //counts mod 2 from running level
+                    newBoss = mod;                              //boss is selected according the mod
+                    levels[mod].spawnsPerTime++;                //more enemies are spawned at a time
+                    levels[mod].maxEnemies += 2;                //more enemies are spawned during the level
+                    levels[mod].enemySpawnTime -= 0.05f;        //time between the enemy spawns will be slighly lower
                     Invoke(nameof(SpawnBoss), 2);
                 }
             }
@@ -90,7 +94,7 @@ public class EnemySpawner : MonoBehaviour
 
     void SpawnBoss()
     {
-        boss = Instantiate(bossTypes[lastLevel], new Vector3(max.x, max.y - ((max.y - min.y) / 2)), bossTypes[lastLevel].transform.rotation);
+        boss = Instantiate(bossTypes[newBoss], new Vector3(max.x, max.y - ((max.y - min.y) / 2)), bossTypes[newBoss].transform.rotation);
         
         //Boss' health is increased according to current level
         multiplier = 1f + (0.1f * PlayerInfo.level);
