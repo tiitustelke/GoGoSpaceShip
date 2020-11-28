@@ -9,9 +9,11 @@ public class EnemySpawner : MonoBehaviour
     Vector2 min, max;
 
     private List<Level> levels;
+    //testi
+    public static Boolean testi = true;
+    //testi
 
     private int spawnCount, totalSpawns;
-
     public GameObject[] enemyTypes;
 
     // Start is called before the first frame update
@@ -30,6 +32,9 @@ public class EnemySpawner : MonoBehaviour
         lastSpawn = 0;
         spawnCount = 0;
         totalSpawns = 0;
+
+
+
     }
 
     // Update is called once per frame
@@ -51,7 +56,13 @@ public class EnemySpawner : MonoBehaviour
                     totalSpawns++;
                     lastSpawn = 0;
                     Vector3 spawnPosition = new Vector3(max.x, UnityEngine.Random.Range(min.y, max.y));
-                    Instantiate(enemyTypes[UnityEngine.Random.Range(0, PlayerInfo.level + 1)], spawnPosition, Quaternion.identity);
+                   //testi
+                    if (!PlayerInfo.story)
+                    {
+                        Instantiate(enemyTypes[UnityEngine.Random.Range(0, PlayerInfo.level + 1)], spawnPosition, Quaternion.identity);
+                        Debug.Log(PlayerInfo.level);
+                    }
+                    
                 }
             }
             else
@@ -71,5 +82,6 @@ public class EnemySpawner : MonoBehaviour
                 }
             }
         }
+        
     }
 }

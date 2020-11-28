@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
     float movementSpeed = 5f;
     float health = 100f;
 
-    float coolDown = 0.5f;
+    float coolDown = 0.3f;
     float nextShot;
 
 

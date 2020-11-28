@@ -7,16 +7,37 @@ public class StorySubtitles : MonoBehaviour
 {
     //pitää tehdä boolean jolla saa asetuksista tekstitykset pois.
     public GameObject textBox;
-
+    public static int story = 0;
     // Start is called before the first frame update
     void Start()
     {
-       
+      
 
     }
 
-    public IEnumerator Intro()
+    void Update()
     {
+        if (PlayerInfo.story && story == 0)
+        {
+            playIntro();
+            story++;
+           
+        }
+
+        if (PlayerInfo.story && story == 1)
+        {
+
+        }
+    }
+
+    public void playIntro()
+        {
+            StartCoroutine("Intro");
+            
+        }
+    IEnumerator Intro()
+    {
+        FindObjectOfType<AudioManager>().Play("Intro");
         //FindObjectOfType<AudioManager>().Play("IntroClip");
         yield return new WaitForSeconds(1);
         textBox.GetComponent<Text>().text = "Pilot, you are doing a great job.";
@@ -32,40 +53,44 @@ public class StorySubtitles : MonoBehaviour
         textBox.GetComponent<Text>().text = "Hostiles approaching! Prepare your lasergun";
         yield return new WaitForSeconds(2);
         textBox.GetComponent<Text>().text = "";
+        FindObjectOfType<AudioManager>().Stop("Intro");
+        PlayerInfo.story = false;
         yield break;
+
     }
+    
+        
 
-    IEnumerator MovingEnemies()
+
+
+
+    IEnumerator PreBossOne()
     {
-        //FindObjectOfType<AudioManager>().Play("MovingEnemies");
-        yield return new WaitForSeconds(1);
-        textBox.GetComponent<Text>().text = "These enemies seem to be more agile, be alert.";
-        yield return new WaitForSeconds(2);
-        textBox.GetComponent<Text>().text = "";
-        yield break;
-    }
-
-    IEnumerator ShootingEnemies()
-    {
-        //FindObjectOfType<AudioManager>().Play("ShootingEnemies");
-        yield return new WaitForSeconds(1);
-        textBox.GetComponent<Text>().text = "These hostiles have guns, dont spare them!.";
-        yield return new WaitForSeconds(2);
-        textBox.GetComponent<Text>().text = "";
-        yield break;
-    }
-
-
-
-    IEnumerator PreBoss()
-    {
+        FindObjectOfType<AudioManager>().Play("BossOne");
         //FindObjectOfType<AudioManager>().Play("PreBoss");
         yield return new WaitForSeconds(1);
-        textBox.GetComponent<Text>().text = "Pilot, something huge is approaching you.";
+        textBox.GetComponent<Text>().text = "Something huge is approaching you!";
         yield return new WaitForSeconds(2);
-        textBox.GetComponent<Text>().text = "I.... I don't think it's friendly!";
+        textBox.GetComponent<Text>().text = "This might get a little tricky";
         yield return new WaitForSeconds(2);
         textBox.GetComponent<Text>().text = "";
+        FindObjectOfType<AudioManager>().Stop("BossOne");
+        yield break;
+
+    }
+
+
+    IEnumerator PreBossTwo()
+    {
+        FindObjectOfType<AudioManager>().Play("BossOne");
+        //FindObjectOfType<AudioManager>().Play("PreBoss");
+        yield return new WaitForSeconds(1);
+        textBox.GetComponent<Text>().text = "Seems like we got another one of those big ones coming!";
+        yield return new WaitForSeconds(2);
+        textBox.GetComponent<Text>().text = "Prepare to dodge some lasers!";
+        yield return new WaitForSeconds(2);
+        textBox.GetComponent<Text>().text = "";
+        FindObjectOfType<AudioManager>().Stop("BossOne");
         yield break;
 
     }
