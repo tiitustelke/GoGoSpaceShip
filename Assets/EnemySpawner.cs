@@ -60,7 +60,6 @@ public class EnemySpawner : MonoBehaviour
                     if (!PlayerInfo.story)
                     {
                         Instantiate(enemyTypes[UnityEngine.Random.Range(0, PlayerInfo.level + 1)], spawnPosition, Quaternion.identity);
-                        Debug.Log(PlayerInfo.level);
                     }
                     
                 }
