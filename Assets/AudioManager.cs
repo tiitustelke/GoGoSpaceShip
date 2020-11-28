@@ -50,14 +50,12 @@ public class AudioManager : MonoBehaviour
         {
 
             s.source.pitch = UnityEngine.Random.Range(0.95f, 1.1f);
-            Debug.Log(s.source.pitch.ToString());
 
         }
 
         if (this.name == "HitMarker")
         {
             s.source.pitch = UnityEngine.Random.Range(0.85f, 1.2f);
-            Debug.Log(s.source.pitch.ToString());
         }
 
         s.source.Play();
@@ -66,8 +64,17 @@ public class AudioManager : MonoBehaviour
 
     public void Stop(string name)
     {
+
         this.name = name;
         Sound s = Array.Find(sounds, sound => sound.name == name);
+
+        //jos paramteri ei matchaa audion nimeen tulee vikailmotusta
+        if (s == null)
+        {
+            Debug.LogWarning("Sound with name " + name + " is not in audio array in Sounds. HUOM case sensitive");
+            return;
+        }
+
 
         s.source.Stop();
     }
