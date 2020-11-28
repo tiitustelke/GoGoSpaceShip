@@ -5,6 +5,10 @@ using UnityEngine;
 
 public class PlayerInfo
 {
+
+    //testi
+    public static bool story = true;
+    //testi
     public static int score { get; set; }
 
     public static int level { get; set; }

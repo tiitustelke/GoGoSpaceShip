@@ -9,12 +9,16 @@ public class EnemySpawner : MonoBehaviour
     Vector2 min, max;
 
     private List<Level> levels;
+    //testi
+    public static Boolean testi = true;
+    //testi
 
     private int spawnCount, totalSpawns, newBoss;
 
     public GameObject[] enemyTypes, bossTypes;
 
     GameObject boss;
+
 
     // Start is called before the first frame update
     void Start()
@@ -33,6 +37,9 @@ public class EnemySpawner : MonoBehaviour
         spawnCount = 0;
         newBoss = 0;
         totalSpawns = 0;
+
+
+
     }
     /// <summary>
     /// In update method the two levels are changed according to mod 2 of the running level number.
@@ -59,7 +66,7 @@ public class EnemySpawner : MonoBehaviour
                         totalSpawns++;
                         lastSpawn = 0;
                         Vector3 spawnPosition;
-                        int type = UnityEngine.Random.Range(0, 1);
+                        int type = UnityEngine.Random.Range(0, 2);
                         if (type == 1)      //spawn position is further from edges of screen if enemy is of moving type
                         {
                             spawnPosition = new Vector3(max.x, UnityEngine.Random.Range(min.y + 1, max.y - 2.5f));
@@ -68,8 +75,10 @@ public class EnemySpawner : MonoBehaviour
                         {
                             spawnPosition = new Vector3(max.x, UnityEngine.Random.Range(min.y, max.y));
                         }
-
-                        Instantiate(enemyTypes[type], spawnPosition, Quaternion.identity);
+                        if (!PlayerInfo.story)
+                        {
+                            Instantiate(enemyTypes[type], spawnPosition, Quaternion.identity);
+                        }
                     }
                 }
                 else
@@ -90,6 +99,7 @@ public class EnemySpawner : MonoBehaviour
                 }
             }
         }
+        
     }
 
     void SpawnBoss()
