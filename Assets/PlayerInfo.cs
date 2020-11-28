@@ -9,6 +9,10 @@ using UnityEngine;
 /// </summary>
 public class PlayerInfo
 {
+    //testi
+    public static bool story = true;
+    //testi
+
     /// <value>Gets and sets the player score.</value>
     public static int score { get; set; }
 

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>
 /// The Enemy class.
@@ -15,15 +16,18 @@ public class Enemy : MonoBehaviour
     public float health;
 
     private float movingTime;
-    private bool movingUp;
+    private bool movingUp, dead = false;
 
     public GameObject explosion;
+
+    public static Text sc;
 
     // Start is called before the first frame update
     void Start()
     {
         movingTime = 0;
         movingUp = true;
+        sc = GameObject.Find("Score").GetComponent<Text>();
     }
 
     // Update is called once per frame
@@ -66,12 +70,19 @@ public class Enemy : MonoBehaviour
     public void DecreaseHealth(float damage)
     {
         health -= damage;
-        if (health <= 0)
+        if (health <= 0 && !dead)
         {
-            PlayerInfo.score++;
+            dead = true;
             ParticleSystem explosionEffect = Instantiate(explosion, transform.position, transform.rotation).GetComponent<ParticleSystem>();
             explosionEffect.Play();
             Destroy(gameObject);
+            PlayerInfo.score++;
+            UpdateScore();
         }
+    }
+
+    private void UpdateScore()
+    {
+        sc.text = PlayerInfo.score.ToString();
     }
 }

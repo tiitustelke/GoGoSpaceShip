@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>
-/// The Boss class.
-/// This class implements logic of Bosses.
+/// <para>This class does the logic for boss movement and shooting.</para>
+/// </para>Inherits enemy including method <see cref="Enemy.DecreaseHealth(float)"/></para>
+/// </para>See <see cref="Enemy"/></para>
 /// </summary>
 public class Boss : Enemy
 {
@@ -20,13 +22,15 @@ public class Boss : Enemy
 
     // Start is called before the first frame update
     /// <summary>
-    /// Used to declare some variables.
+    /// <para>In start method the player GameObject, score text field and center position of screen is initialized </para>
+    /// <para>Target position where player will move is initially the center of screen</para>
     /// </summary>
     void Start()
     {
         player = GameObject.Find("Player");
         centerPos = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width / 2, Screen.height / 2));
         targetPos = centerPos;
+        sc = GameObject.Find("Score").GetComponent<Text>();
     }
 
     /// <summary>

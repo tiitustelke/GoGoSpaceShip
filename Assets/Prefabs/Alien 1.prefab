@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 2976149089689928801}
   - component: {fileID: 2976149089689928802}
   - component: {fileID: 2976149089689928803}
-  - component: {fileID: 1612350388}
   - component: {fileID: 20815658}
   m_Layer: 10
   m_Name: Alien 1
@@ -100,7 +99,7 @@ MonoBehaviour:
   type: 3
   movementSpeed: 1
   hitDamage: 0
-  health: 200
+  health: 300
   explosion: {fileID: 5745571014550976779, guid: d3816495d4fed4ecdbdd179c5c39fa8b,
     type: 3}
   ammo: {fileID: 100000, guid: bfe0ba4acc768a5448d46a6c63d8106a, type: 3}
@@ -127,32 +126,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &1612350388
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2976149089689928828}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.0013638735, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.4, y: 0.7}
-    newSize: {x: 0.4, y: 0.7}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.39181772, y: 0.7}
-  m_EdgeRadius: 0
 --- !u!68 &20815658
 EdgeCollider2D:
   m_ObjectHideFlags: 0

@@ -10,19 +10,21 @@ using UnityEngine;
 public class Background : MonoBehaviour
 {
     public Renderer backgroundRend;
+
     // Start is called before the first frame update
     void Start()
     {
         
     }
-
+    
     // Update is called once per frame
     /// <summary>
-    /// Moves background left once per frame. If there is a boss enemy spawned, the background is not moving.
+    /// <para>In update method background speed is varied according if there's a boss</para>
+    /// <para>The background simply works by moving the texture of the quad GameObject in background. The texture then repeats over and over again.</para>
     /// </summary>
     void Update()
     {
-        float backgroundSpeed = 2;
+        float backgroundSpeed = 2;      //speed of the background
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         if (enemies.Length == 1)
         {
