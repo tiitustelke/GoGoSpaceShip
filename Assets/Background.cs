@@ -1,7 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//Thanks MadFireOn https://www.youtube.com/watch?v=32EIYs6Z18Q
+
+/// <summary>
+/// The Background class.
+/// This class implements moving background.
+/// Tutorial and instructions were given by YouTuber MadFireOn on video https://www.youtube.com/watch?v=32EIYs6Z18Q.
+/// </summary>
 public class Background : MonoBehaviour
 {
     public Renderer backgroundRend;
@@ -12,6 +17,9 @@ public class Background : MonoBehaviour
     }
 
     // Update is called once per frame
+    /// <summary>
+    /// Moves background left once per frame. If there is a boss enemy spawned, the background is not moving.
+    /// </summary>
     void Update()
     {
         float backgroundSpeed = 2;

@@ -3,15 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// The Player class.
+/// Contains all necessary features to operate with the main character.
+/// </summary>
 public class Player : MonoBehaviour
 {
     float movementSpeed = 5f;
 
     Vector2 min, max;
 
+    /// <value>Ammo prefab set in Unity.</value>
     public GameObject ammo;
 
     // Start is called before the first frame update
+    /// <summary>
+    /// Used to declare some variables and set player health to maximum. 
+    /// </summary>
     void Start()
     {
         float camDistance = Vector3.Distance(transform.position, Camera.main.transform.position);
@@ -22,6 +30,11 @@ public class Player : MonoBehaviour
     }
 
     // Update is called once per frame
+    /// <summary>
+    /// Player movement by using up and down array keys.
+    /// Instantiate ammo by pressing spacebar.
+    /// </summary>
+    /// See <see cref="ammo"/>.
     void Update()
     {
         if (Input.GetKey(KeyCode.UpArrow))
@@ -48,6 +61,12 @@ public class Player : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Detect Player collisions.
+    /// If a game object with tag enemy hits a player, the player health is decreased and the enemy is being destroyed.
+    /// </summary>
+    /// See <see cref="Enemy.hitDamage"/>.
+    /// <param name="collision"></param>
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))
@@ -57,6 +76,11 @@ public class Player : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Decreases Player health.
+    /// If the health decreases to 0 or below it, the game is over and a new scene is loaded.
+    /// </summary>
+    /// <param name="damage">The amount of HP to substract from Player's current health.</param>
     public void DecreaseHealth(float damage)
     {
         PlayerInfo.health -= damage;

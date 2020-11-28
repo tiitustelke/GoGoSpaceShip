@@ -2,8 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// The Enemy class.
+/// The logic of enemies is implemented in this class.
+/// </summary>
 public class Enemy : MonoBehaviour
 {
+
     public EnemyType type;
     public float movementSpeed;
     public float hitDamage;
@@ -22,6 +27,9 @@ public class Enemy : MonoBehaviour
     }
 
     // Update is called once per frame
+    /// <summary>
+    /// Enemy movement logic.
+    /// </summary>
     void Update()
     {
         switch (type)
@@ -41,11 +49,20 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Destroy the enemy when it becomes inivisible.
+    /// </summary>
     private void OnBecameInvisible()
     {
         Destroy(gameObject);
     }
 
+    /// <summary>
+    /// Decrase the health of enemy.
+    /// If the health gets a value of 0, the enemy is being destroyed among with explosion effect.
+    /// </summary>
+    /// <param name="damage">The amount of damage to substract from health.</param>
+    /// See <see cref="health"/>.
     public void DecreaseHealth(float damage)
     {
         health -= damage;

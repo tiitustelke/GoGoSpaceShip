@@ -2,16 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// The Boss class.
+/// This class implements logic of Bosses.
+/// </summary>
 public class Boss : Enemy
 {
+    /// <value>Ammo prefab set in Unity.</value>
     public GameObject ammo;
+    /// <value>Boss'es fire rate and damage set in Unity.</value>
     public float fireRate, damage; //firerate: 0.5 = every half second, 2 = every two seconds...
+
     private GameObject player;
     private float fireTime = 0;     //firetime: how much time until next shot
 
     Vector3 targetPos, centerPos;
 
     // Start is called before the first frame update
+    /// <summary>
+    /// Used to declare some variables.
+    /// </summary>
     void Start()
     {
         player = GameObject.Find("Player");
@@ -19,14 +29,19 @@ public class Boss : Enemy
         targetPos = centerPos;
     }
 
+    /// <summary>
+    /// Boss movement and shooting logic.
+    /// Boss shoots regarding to fire rate.
+    /// </summary>
+    /// See <see cref="fireRate"/>.
     void Update()
     {
-        float angle = Random.Range(0, 2 * Mathf.PI);
-
         if (Vector2.Distance(transform.position, targetPos) < 0.01)
         {
             if (targetPos == centerPos)
-            {   //Switches moving behaviour according to boss type
+            {
+                float angle = Random.Range(0, 2 * Mathf.PI);
+                //Switches moving behaviour according to boss type
                 switch (type)
                 {
                     //Target is player on y-axis and moves randomly on x-axis
@@ -56,6 +71,10 @@ public class Boss : Enemy
         fireTime -= Time.deltaTime;
     }
 
+    /// <summary>
+    /// Instantiate ammo in front of enemy.
+    /// </summary>
+    /// See <see cref="ammo"/>.
     void Shoot()
     {
         GameObject enemyAmmo = Instantiate(ammo, transform.position + transform.up * 2.0f, Quaternion.identity);
