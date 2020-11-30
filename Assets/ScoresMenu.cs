@@ -9,7 +9,7 @@ public class ScoresMenu : MonoBehaviour
     Button backButton;
     GameObject mainMenu, scoresMenu;
     
-
+   
     void Start()
     {
         scoresMenu = GameObject.Find("ScoresMenu");
@@ -20,6 +20,7 @@ public class ScoresMenu : MonoBehaviour
         backButton.onClick.AddListener(() => GoBack());
     }
 
+    //Go back to main menu- set scores menu off and active menu menu
     public void GoBack()
     {
         Debug.Log("Back to main menu...");

@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class GameOver : MonoBehaviour
 {
-
+    
    
     private Button playButton;
     private Button quitButton;
@@ -16,7 +16,8 @@ public class GameOver : MonoBehaviour
 
     void Start()
     {
- 
+        //PauseMenu.GameIsPaused = true;
+
         quitButton = GameObject.Find("QuitButton").GetComponent<Button>();
         playButton = GameObject.Find("PlayButton").GetComponent<Button>();
         menuButton = GameObject.Find("MenuButton").GetComponent<Button>();
@@ -28,41 +29,49 @@ public class GameOver : MonoBehaviour
         playButton.onClick.AddListener(() => PlayAgain());
         menuButton.onClick.AddListener(() => OpenMenu());
 
-        GameOverMenu.gameObject.SetActive(false);
+        //Hide Gameover menu, before it's needed
+        GameOverMenu.SetActive(false);
     }
 
 
-    //Get text from input field
+    
     void Update()
     {
             if (Input.GetKeyDown(KeyCode.Return))
             {
+            //Get string from input field
+            string playerNameText = playerName.text;
+
             DataSaver dataSaver = new DataSaver();
             PlayerData playerData = dataSaver.ReadPlayerData();
 
             dataSaver.SavePlayerData(playerData);
 
-
-            Debug.Log(playerName.text);
+            Debug.Log(playerNameText);
 
             playerName.text = "";
-            InputMenu.SetActive(false);
+
+            // Disable Input-menu and activate GameOver Menu
             GameOverMenu.SetActive(true);
+            InputMenu.SetActive(false);
         }
     }
 
+    //Quit Game
     void Quit()
     {
         Debug.Log("Quit...");
         Application.Quit();
     }
 
+    //Start new game
     void PlayAgain()
     {
         Debug.Log("Starting New Game....");
         SceneManager.LoadScene("Game");
     }
 
+    // Load menu scene
     void OpenMenu()
     {
         Debug.Log("Opening MainMenu....");

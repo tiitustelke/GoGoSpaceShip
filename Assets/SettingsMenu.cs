@@ -26,6 +26,7 @@ public class SettingsMenu : MonoBehaviour
 
     }
 
+    //Go back to main menu - set settings menu off and active menu menu
     public void GoBack()
     {
         Debug.Log("Back to main menu...");
@@ -33,6 +34,7 @@ public class SettingsMenu : MonoBehaviour
         settingsMenu.SetActive(false);
     }
 
+    //Get volume value from slider
     void OnValueChanged()
     {
         float volumeValue = volumeSlider.value * 100;

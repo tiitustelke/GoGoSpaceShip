@@ -35,7 +35,7 @@ public class MainMenu : MonoBehaviour
 
     }
 
-
+    //Start game - Load game scene and set boolean to false so game starts
     public void PlayGame()
     {
         Debug.Log("Starting Game....");
@@ -43,12 +43,14 @@ public class MainMenu : MonoBehaviour
         PauseMenu.GameIsPaused = false;
     }
 
+    //Quit whole application
     public void QuitGame()
     {
         Debug.Log("Quit.");
         Application.Quit();
     }
 
+    //Open settings menu and set main menu off
     public void Settings()
     {
         Debug.Log("Settings...");
@@ -56,6 +58,7 @@ public class MainMenu : MonoBehaviour
         settingsMenu.SetActive(true);
     }
 
+    //Open scores menu and set main menu off
     public void Scores()
     {
         Debug.Log("Scores....");
