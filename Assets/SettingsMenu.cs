@@ -7,15 +7,14 @@ public class SettingsMenu : MonoBehaviour
 {
 
     Button backButton;
-    MainMenu mainMenu;
-    SettingsMenu settingsMenu;
+    GameObject mainMenu, settingsMenu;
     Slider volumeSlider;
 
  
     void Start()
     {
-        settingsMenu = GameObject.Find("SettingsMenu").GetComponent<SettingsMenu>();
-        mainMenu = GameObject.Find("MainMenu").GetComponent<MainMenu>();
+        settingsMenu = GameObject.Find("SettingsMenu");
+        mainMenu = GameObject.Find("MainMenu");
 
         backButton = GameObject.Find("BackButton").GetComponent<Button>();
 
@@ -30,8 +29,8 @@ public class SettingsMenu : MonoBehaviour
     public void GoBack()
     {
         Debug.Log("Back to main menu...");
-        mainMenu.gameObject.SetActive(true);
-        settingsMenu.gameObject.SetActive(false);
+        mainMenu.SetActive(true);
+        settingsMenu.SetActive(false);
     }
 
     void OnValueChanged()

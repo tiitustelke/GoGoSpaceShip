@@ -11,9 +11,7 @@ public class MainMenu : MonoBehaviour
     private Button settingsButton;
     private Button scoreButton;
 
-    private MainMenu mainMenu;
-    private SettingsMenu settingsMenu;
-    private ScoresMenu scoresMenu;
+    GameObject mainMenu, settingsMenu, scoresMenu;
 
     void Start()
     {
@@ -22,12 +20,12 @@ public class MainMenu : MonoBehaviour
         settingsButton = (Button)GameObject.Find("SettingsButton").GetComponent<Button>();
         scoreButton = (Button)GameObject.Find("ScoreButton").GetComponent<Button>();
 
-        settingsMenu = GameObject.Find("SettingsMenu").GetComponent<SettingsMenu>();
-        mainMenu = GameObject.Find("MainMenu").GetComponent<MainMenu>();
-        scoresMenu = GameObject.Find("ScoresMenu").GetComponent<ScoresMenu>();
+        settingsMenu = GameObject.Find("SettingsMenu");
+        mainMenu = GameObject.Find("MainMenu");
+        scoresMenu = GameObject.Find("ScoresMenu");
 
-        settingsMenu.gameObject.SetActive(false);
-        scoresMenu.gameObject.SetActive(false);
+        settingsMenu.SetActive(false);
+        scoresMenu.SetActive(false);
 
         playButton.onClick.AddListener(() => PlayGame());
         quitButton.onClick.AddListener(() => QuitGame());
@@ -42,6 +40,7 @@ public class MainMenu : MonoBehaviour
     {
         Debug.Log("Starting Game....");
         SceneManager.LoadScene("Game");
+        PauseMenu.GameIsPaused = false;
     }
 
     public void QuitGame()
@@ -53,15 +52,15 @@ public class MainMenu : MonoBehaviour
     public void Settings()
     {
         Debug.Log("Settings...");
-        mainMenu.gameObject.SetActive(false);
-        settingsMenu.gameObject.SetActive(true);
+        mainMenu.SetActive(false);
+        settingsMenu.SetActive(true);
     }
 
     public void Scores()
     {
         Debug.Log("Scores....");
-        mainMenu.gameObject.SetActive(false);
-        scoresMenu.gameObject.SetActive(true);
+        mainMenu.SetActive(false);
+        scoresMenu.SetActive(true);
     }
 
 }

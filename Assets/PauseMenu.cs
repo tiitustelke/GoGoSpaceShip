@@ -14,6 +14,7 @@ public class PauseMenu : MonoBehaviour
     private Button quitButton;
 
 
+
     void Start()
     {
        
@@ -22,9 +23,11 @@ public class PauseMenu : MonoBehaviour
         resumeButton = GameObject.Find("ResumeButton").GetComponent<Button>();
         quitButton = GameObject.Find("PauseQuitButton").GetComponent<Button>();
 
-        menuButton.onClick.AddListener(delegate { GoToMenu(); });
+        menuButton.onClick.AddListener(()=> GoToMenu());
         resumeButton.onClick.AddListener(() => Resume());
         quitButton.onClick.AddListener(() => QuitGame());
+
+        PauseMenuUI.SetActive(false);
     }
 
     void Update()

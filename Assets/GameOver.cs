@@ -6,28 +6,27 @@ public class GameOver : MonoBehaviour
 {
 
    
-    private Button PlayButton;
-    private Button QuitButton;
-    private Button MenuButton;
+    private Button playButton;
+    private Button quitButton;
+    private Button menuButton;
 
-    private InputField inputField;
-    private GameOver GameOverMenu;
-    private GameOver InputMenu;
-    private string userName;
+    InputField playerName;
+    GameObject GameOverMenu, InputMenu;
+    
 
     void Start()
     {
  
-        QuitButton = GameObject.Find("QuitButton").GetComponent<Button>();
-        PlayButton = GameObject.Find("PlayButton").GetComponent<Button>();
-        MenuButton = GameObject.Find("MenuButton").GetComponent<Button>();
-        inputField = GameObject.Find("UserInput").GetComponent<InputField>();
-        GameOverMenu = GameObject.Find("GameOverMenu").GetComponent<GameOver>();
-        InputMenu = GameObject.Find("InputMenu").GetComponent<GameOver>();
+        quitButton = GameObject.Find("QuitButton").GetComponent<Button>();
+        playButton = GameObject.Find("PlayButton").GetComponent<Button>();
+        menuButton = GameObject.Find("MenuButton").GetComponent<Button>();
+        playerName = GameObject.Find("UserInput").GetComponent<InputField>();
+        GameOverMenu = GameObject.Find("GameOverMenu");
+        InputMenu = GameObject.Find("InputMenu");
 
-        QuitButton.onClick.AddListener(() => Quit());
-        PlayButton.onClick.AddListener(() => PlayAgain());
-        MenuButton.onClick.AddListener(() => OpenMenu());
+        quitButton.onClick.AddListener(() => Quit());
+        playButton.onClick.AddListener(() => PlayAgain());
+        menuButton.onClick.AddListener(() => OpenMenu());
 
         GameOverMenu.gameObject.SetActive(false);
     }
@@ -38,14 +37,18 @@ public class GameOver : MonoBehaviour
     {
             if (Input.GetKeyDown(KeyCode.Return))
             {
-                userName = inputField.text;
+            DataSaver dataSaver = new DataSaver();
+            PlayerData playerData = dataSaver.ReadPlayerData();
 
-                Debug.Log(userName);
+            dataSaver.SavePlayerData(playerData);
 
-                inputField.text = "";
-                InputMenu.gameObject.SetActive(false);
-                GameOverMenu.gameObject.SetActive(true);
-            }
+
+            Debug.Log(playerName.text);
+
+            playerName.text = "";
+            InputMenu.SetActive(false);
+            GameOverMenu.SetActive(true);
+        }
     }
 
     void Quit()

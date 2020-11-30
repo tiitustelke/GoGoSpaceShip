@@ -7,13 +7,13 @@ public class ScoresMenu : MonoBehaviour
 {
 
     Button backButton;
-    MainMenu mainMenu;
-    ScoresMenu scoresMenu;
+    GameObject mainMenu, scoresMenu;
+    
 
     void Start()
     {
-        scoresMenu = GameObject.Find("ScoresMenu").GetComponent<ScoresMenu>();
-        mainMenu = GameObject.Find("MainMenu").GetComponent<MainMenu>();
+        scoresMenu = GameObject.Find("ScoresMenu");
+        mainMenu = GameObject.Find("MainMenu");
 
         backButton = GameObject.Find("BackButton2").GetComponent<Button>();
 
@@ -23,7 +23,7 @@ public class ScoresMenu : MonoBehaviour
     public void GoBack()
     {
         Debug.Log("Back to main menu...");
-        scoresMenu.gameObject.SetActive(false);
-        mainMenu.gameObject.SetActive(true);
+        scoresMenu.SetActive(false);
+        mainMenu.SetActive(true);
     }
 }
