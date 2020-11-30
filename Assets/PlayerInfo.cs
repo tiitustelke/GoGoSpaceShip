@@ -9,9 +9,8 @@ using UnityEngine;
 /// </summary>
 public class PlayerInfo
 {
-    //testi
+    /// <value>Indicates whether the story mode is enabled or not.</value>
     public static bool story = true;
-    //testi
 
     /// <value>Gets and sets the player score.</value>
     public static int score { get; set; }
@@ -22,13 +21,6 @@ public class PlayerInfo
     /// <value>Gets and sets the player health.</value>
     public static float health { get; set; }
 
-    public string Name;
-
-    public int Score;
-
-    public PlayerInfo()
-    {
-        Name = "Test";
-        Score = score;
-    }
+    /// <value>Gets and sets the player pause status whether the the pause menu is active or not.</value>
+    public static bool paused { get; set; }
 }

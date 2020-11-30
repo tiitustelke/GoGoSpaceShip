@@ -43,36 +43,36 @@ public class Player : MonoBehaviour
     /// See <see cref="ammo"/>.
     void Update()
     {
-
-
-        if (Input.GetKey(KeyCode.UpArrow))
+        if (!PlayerInfo.paused)
         {
-            if (transform.position.y < max.y)
+            if (Input.GetKey(KeyCode.UpArrow))
             {
-                transform.position += Vector3.up * Time.deltaTime * movementSpeed;
+                if (transform.position.y < max.y)
+                {
+                    transform.position += Vector3.up * Time.deltaTime * movementSpeed;
+                }
             }
-        }
-        else if (Input.GetKey(KeyCode.DownArrow))
-        {
-            if (transform.position.y > min.y)
+            else if (Input.GetKey(KeyCode.DownArrow))
             {
-                transform.position += Vector3.down * Time.deltaTime * movementSpeed;
-            }
+                if (transform.position.y > min.y)
+                {
+                    transform.position += Vector3.down * Time.deltaTime * movementSpeed;
+                }
             
-        }
+            }
 
-        if (Time.time > nextShot)
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Time.time > nextShot)
             {
-                GameObject playerAmmo = Instantiate(ammo, transform.position + transform.up * 0.5f, transform.rotation);
-                Physics2D.IgnoreCollision(GetComponent<Collider2D>(), playerAmmo.GetComponent<Collider2D>());
-                playerAmmo.GetComponent<Weapon>().damage = 20;
-                FindObjectOfType<AudioManager>().Play("LaserGun");
-                nextShot = Time.time + coolDown;
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    GameObject playerAmmo = Instantiate(ammo, transform.position + transform.up * 0.5f, transform.rotation);
+                    Physics2D.IgnoreCollision(GetComponent<Collider2D>(), playerAmmo.GetComponent<Collider2D>());
+                    playerAmmo.GetComponent<Weapon>().damage = 20;
+                    FindObjectOfType<AudioManager>().Play("LaserGun");
+                    nextShot = Time.time + coolDown;
+                }
             }
         }
-
     }
 
     /// <summary>

@@ -9,9 +9,6 @@ public class EnemySpawner : MonoBehaviour
     Vector2 min, max;
 
     private List<Level> levels;
-    //testi
-    public static Boolean testi = true;
-    //testi
 
     private int spawnCount, totalSpawns, newBoss;
 

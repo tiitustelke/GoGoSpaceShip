@@ -6,39 +6,38 @@ using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
-    public static bool GameIsPaused = false;
-
-    public GameObject PauseMenuUI;
-    Button menuButton;
-    Button resumeButton;
-    Button quitButton;
-
+    public GameObject pauseMenu;
 
     void Start()
     {
-       
-        Debug.Log("PauseMenuWorking");
-        menuButton = GameObject.Find("MenuButton").GetComponent<Button>();
-        resumeButton = GameObject.Find("ResumeButton").GetComponent<Button>();
-        quitButton = GameObject.Find("PauseQuitButton").GetComponent<Button>();
-
-        menuButton.onClick.AddListener(delegate { GoToMenu(); });
-        resumeButton.onClick.AddListener(() => Resume());
-        quitButton.onClick.AddListener(() => QuitGame());
+        Button[] buttons = pauseMenu.GetComponentsInChildren<Button>(true);
+        foreach (Button button in buttons)
+        {
+            switch (button.name)
+            {
+                case "MenuButton":
+                    button.onClick.AddListener(() => GoToMenu());
+                    break;
+                case "ResumeButton":
+                    button.onClick.AddListener(() => Resume());
+                    break;
+                case "PauseQuitButton":
+                    button.onClick.AddListener(() => QuitGame());
+                    break;
+            }
+        }
     }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (GameIsPaused)
+            if (pauseMenu.activeSelf)
             {
-                Debug.Log("Resume game..");
                 Resume();
             }
             else
             {
-                Debug.Log("Pause game..");
                 Pause();
             }
         }
@@ -46,28 +45,26 @@ public class PauseMenu : MonoBehaviour
 
     public void Resume()
     {
-        PauseMenuUI.SetActive(false);
+        pauseMenu.SetActive(false);
+        PlayerInfo.paused = false;
         Time.timeScale = 1f;
-        GameIsPaused = false;
         
     }
 
     public void Pause()
     {
-        PauseMenuUI.SetActive(true);
+        pauseMenu.SetActive(true);
+        PlayerInfo.paused = true;
         Time.timeScale = 0f;
-        GameIsPaused = true;
     }
 
     public void QuitGame()
     {
-        Debug.Log("Quit.");
         Application.Quit();
     }
 
     public void GoToMenu()
     {
-        Debug.Log("Menu..");
         Time.timeScale = 1f;
         SceneManager.LoadScene("MainMenu");
     }
