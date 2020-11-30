@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using System;
 using UnityEngine;
-
+/// <summary>
+/// This script manages spawning of all enemies including bosses
+/// See <see cref="Enemy"/>, <see cref="Boss"/>
+/// </summary>
 public class EnemySpawner : MonoBehaviour
 {
     private float lastUpdate, lastSpawn, multiplier;
@@ -98,7 +101,9 @@ public class EnemySpawner : MonoBehaviour
         }
         
     }
-
+    /// <summary>
+    /// Spawns a new boss
+    /// </summary>
     void SpawnBoss()
     {
         boss = Instantiate(bossTypes[newBoss], new Vector3(max.x, max.y - ((max.y - min.y) / 2)), bossTypes[newBoss].transform.rotation);
