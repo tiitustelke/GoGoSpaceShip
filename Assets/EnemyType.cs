@@ -1,6 +1,9 @@
 ﻿using System;
 public enum EnemyType
 {
+    None,
     Static,
-    Moving
+    Moving,
+    Boss,
+    Miniboss
 }

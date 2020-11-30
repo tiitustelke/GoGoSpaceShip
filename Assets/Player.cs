@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 public class Player : MonoBehaviour
 {
     float movementSpeed = 5f;
-    float health = 100f;
 
     Vector2 min, max;
 
@@ -18,6 +17,8 @@ public class Player : MonoBehaviour
         float camDistance = Vector3.Distance(transform.position, Camera.main.transform.position);
         min = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, camDistance));
         max = Camera.main.ViewportToWorldPoint(new Vector3(1, 1, camDistance));
+
+        PlayerInfo.health = 100f;
     }
 
     // Update is called once per frame
@@ -41,7 +42,17 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Instantiate(ammo, transform.position + transform.up * 0.5f, transform.rotation);
+            //To prevent player pressing space many times at pausemenu
+            if (PauseMenu.GameIsPaused)
+            {
+
+            }
+            else
+            {
+                GameObject playerAmmo = Instantiate(ammo, transform.position + transform.up * 0.5f, transform.rotation);
+                Physics2D.IgnoreCollision(GetComponent<Collider2D>(), playerAmmo.GetComponent<Collider2D>());
+                playerAmmo.GetComponent<Weapon>().damage = 20;
+            }
         }
     }
 
@@ -49,12 +60,17 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            health -= collision.gameObject.GetComponent<Enemy>().damage;
+            DecreaseHealth(collision.gameObject.GetComponent<Enemy>().hitDamage);
             Destroy(collision.gameObject);
-            if (health <= 0) // The player is killed, load game over scene
-            {
-                SceneManager.LoadScene("GameOver");
-            }
+        }
+    }
+
+    public void DecreaseHealth(float damage)
+    {
+        PlayerInfo.health -= damage;
+        if (PlayerInfo.health <= 0) // The player is killed, load game over scene
+        {
+            SceneManager.LoadScene("GameOver");
         }
     }
 }

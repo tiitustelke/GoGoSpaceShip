@@ -5,14 +5,16 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    private float lastUpdate, lastSpawn;
+    private float lastUpdate, lastSpawn, multiplier;
     Vector2 min, max;
 
     private List<Level> levels;
 
-    private int spawnCount, totalSpawns;
+    private int spawnCount, totalSpawns, lastLevel;
 
-    public GameObject[] enemyTypes;
+    public GameObject[] enemyTypes, bossTypes;
+
+    GameObject boss;
 
     // Start is called before the first frame update
     void Start()
@@ -29,47 +31,69 @@ public class EnemySpawner : MonoBehaviour
         lastUpdate = 0;
         lastSpawn = 0;
         spawnCount = 0;
+        lastLevel = 0;
         totalSpawns = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        lastUpdate += Time.deltaTime;
-        if (lastUpdate >= levels[PlayerInfo.level].enemySpawnTime)
+        if (!boss)
         {
-            if (lastSpawn >= 0.3)
+            lastUpdate += Time.deltaTime;
+            if (lastUpdate >= levels[PlayerInfo.level].enemySpawnTime)
             {
-                if (spawnCount >= levels[PlayerInfo.level].spawnsPerTime)
+                if (lastSpawn >= 0.3)
                 {
-                    spawnCount = 0;
-                    lastUpdate = 0;
+                    if (spawnCount >= levels[PlayerInfo.level].spawnsPerTime)
+                    {
+                        spawnCount = 0;
+                        lastUpdate = 0;
+                    }
+                    else
+                    {
+                        spawnCount++;
+                        totalSpawns++;
+                        lastSpawn = 0;
+                        Vector3 spawnPosition;
+                        int type = UnityEngine.Random.Range(0, PlayerInfo.level + 1);
+                        if (type == 1)      //spawn position is further from edges of screen if enemy is of moving type
+                        {
+                            spawnPosition = new Vector3(max.x, UnityEngine.Random.Range(min.y + 1, max.y - 2.5f));
+                        }
+                        else
+                        {
+                            spawnPosition = new Vector3(max.x, UnityEngine.Random.Range(min.y, max.y));
+                        }
+
+                        Instantiate(enemyTypes[type], spawnPosition, Quaternion.identity);
+                    }
                 }
                 else
                 {
-                    spawnCount++;
-                    totalSpawns++;
-                    lastSpawn = 0;
-                    Vector3 spawnPosition = new Vector3(max.x, UnityEngine.Random.Range(min.y, max.y));
-                    Instantiate(enemyTypes[UnityEngine.Random.Range(0, PlayerInfo.level + 1)], spawnPosition, Quaternion.identity);
+                    lastSpawn += Time.deltaTime;
                 }
-            }
-            else
-            {
-                lastSpawn += Time.deltaTime;
-            }
-            if (levels[PlayerInfo.level].maxEnemies == totalSpawns)
-            {
-                if (PlayerInfo.level + 1 < levels.Count)
+                if (levels[PlayerInfo.level].maxEnemies == totalSpawns)
                 {
-                    PlayerInfo.level++;
+                    lastLevel = PlayerInfo.level;
+                    if (PlayerInfo.level + 1 < levels.Count)
+                    {
+                        PlayerInfo.level++;
+                    }
                     totalSpawns = 0;
-                }
-                else
-                {
-                    totalSpawns = 0;
+                    lastSpawn -= 2;
+                    Invoke(nameof(SpawnBoss), 2);
                 }
             }
         }
+    }
+
+    void SpawnBoss()
+    {
+        boss = Instantiate(bossTypes[lastLevel], new Vector3(max.x, max.y - ((max.y - min.y) / 2)), bossTypes[lastLevel].transform.rotation);
+        
+        //Boss' health is increased according to current level
+        multiplier = 1f + (0.1f * PlayerInfo.level);
+        boss.GetComponent<Boss>().health = boss.GetComponent<Boss>().health * multiplier;
     }
 }

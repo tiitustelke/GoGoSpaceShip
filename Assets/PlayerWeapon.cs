@@ -27,7 +27,7 @@ public class PlayerWeapon : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            collision.gameObject.GetComponent<Enemy>().DecreaseHealth();
+            collision.gameObject.GetComponent<Enemy>().DecreaseHealth(5f);
             Destroy(gameObject);
         }
     }

@@ -11,9 +11,9 @@ public class MainMenu : MonoBehaviour
     private Button settingsButton;
     private Button scoreButton;
 
-    MainMenu mainMenu;
-    SettingsMenu settingsMenu;
-    ScoresMenu scoresMenu;
+    private MainMenu mainMenu;
+    private SettingsMenu settingsMenu;
+    private ScoresMenu scoresMenu;
 
     void Start()
     {

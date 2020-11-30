@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2816940806402537829}
   - component: {fileID: 4097915937273734029}
   - component: {fileID: 5284863128016876701}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: MovingUfo
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -133,7 +133,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea4fb66a4cefd4ba0865edc4c499f7a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 1
+  type: 2
   movementSpeed: 5
-  damage: 30
-  health: 2
+  hitDamage: 25
+  health: 40
+  explosion: {fileID: 5745571014550976779, guid: d3816495d4fed4ecdbdd179c5c39fa8b,
+    type: 3}
