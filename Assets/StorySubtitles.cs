@@ -7,27 +7,19 @@ public class StorySubtitles : MonoBehaviour
 {
     //pitää tehdä boolean jolla saa asetuksista tekstitykset pois.
     public GameObject textBox;
-    public static int story = 0;
     // Start is called before the first frame update
     void Start()
     {
-      
-
+        if (PlayerInfo.story)
+        {
+            playIntro();
+        }
+        
     }
 
     void Update()
     {
-        if (PlayerInfo.story && story == 0)
-        {
-            playIntro();
-            story++;
-           
-        }
-
-        if (PlayerInfo.story && story == 1)
-        {
-
-        }
+        
     }
 
     public void playIntro()
@@ -52,7 +44,7 @@ public class StorySubtitles : MonoBehaviour
         textBox.GetComponent<Text>().text = "Hostiles approaching! Prepare your lasergun";
         yield return new WaitForSeconds(2);
         textBox.GetComponent<Text>().text = "";
-       // FindObjectOfType<AudioManager>().Stop("Intro");
+        // FindObjectOfType<AudioManager>().Stop("Intro");
         PlayerInfo.story = false;
         yield break;
 
@@ -88,6 +80,7 @@ public class StorySubtitles : MonoBehaviour
         yield return new WaitForSeconds(2);
         textBox.GetComponent<Text>().text = "";
         //FindObjectOfType<AudioManager>().Stop("BossOne");
+
         yield break;
 
     }
