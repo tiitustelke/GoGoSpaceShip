@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 
-public class HighestScoreFirst : Comparer<PlayerInfo>
+public class HighestScoreFirst : Comparer<Info>
 {
-    public override int Compare(PlayerInfo x, PlayerInfo y)
+    public override int Compare(Info x, Info y)
     {
         if (x.Score > y.Score)
         {

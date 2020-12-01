@@ -3,19 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// The Enemy class.
+/// The logic of enemies is implemented in this class.
+/// </summary>
 public class Enemy : MonoBehaviour
 {
+
     public EnemyType type;
     public float movementSpeed;
     public float hitDamage;
     public float health;
 
     private float movingTime;
-    private bool movingUp;
+    private bool movingUp, dead = false;
 
     public GameObject explosion;
 
-    private Text sc;
+    public static Text sc;
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +31,9 @@ public class Enemy : MonoBehaviour
     }
 
     // Update is called once per frame
+    /// <summary>
+    /// Enemy movement logic.
+    /// </summary>
     void Update()
     {
         switch (type)
@@ -45,21 +53,36 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Destroy the enemy when it becomes inivisible.
+    /// </summary>
     private void OnBecameInvisible()
     {
         Destroy(gameObject);
     }
 
+    /// <summary>
+    /// Decrase the health of enemy.
+    /// If the health gets a value of 0, the enemy is being destroyed among with explosion effect.
+    /// </summary>
+    /// <param name="damage">The amount of damage to substract from health.</param>
+    /// See <see cref="health"/>.
     public void DecreaseHealth(float damage)
     {
         health -= damage;
-        if (health <= 0)
+        if (health <= 0 && !dead)
         {
+            dead = true;
             ParticleSystem explosionEffect = Instantiate(explosion, transform.position, transform.rotation).GetComponent<ParticleSystem>();
             explosionEffect.Play();
             Destroy(gameObject);
             PlayerInfo.score++;
-            sc.text = PlayerInfo.score.ToString();
+            UpdateScore();
         }
+    }
+
+    private void UpdateScore()
+    {
+        sc.text = PlayerInfo.score.ToString();
     }
 }

@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Level
 {
-    public int enemySpawnTime { get; }
-    public int spawnsPerTime { get; }
-    public int maxEnemies { get; }
+    public float enemySpawnTime { get; set; }
+    public int spawnsPerTime { get; set; }
+    public int maxEnemies { get; set; }
 
     public Level(int enemySpawnTime, int spawnsPerTime, int maxEnemies)
     {

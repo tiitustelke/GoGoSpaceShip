@@ -1,32 +1,51 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
+/// <summary>
+/// <para>This class does the logic for boss movement and shooting.</para>
+/// </para>Inherits enemy including method <see cref="Enemy.DecreaseHealth(float)"/></para>
+/// </para>See <see cref="Enemy"/></para>
+/// </summary>
 public class Boss : Enemy
 {
+    /// <value>Ammo prefab set in Unity.</value>
     public GameObject ammo;
+    /// <value>Boss'es fire rate and damage set in Unity.</value>
     public float fireRate, damage; //firerate: 0.5 = every half second, 2 = every two seconds...
+
     private GameObject player;
     private float fireTime = 0;     //firetime: how much time until next shot
 
     Vector3 targetPos, centerPos;
 
     // Start is called before the first frame update
+    /// <summary>
+    /// <para>In start method the player GameObject, score text field and center position of screen is initialized </para>
+    /// <para>Target position where player will move is initially the center of screen</para>
+    /// </summary>
     void Start()
     {
         player = GameObject.Find("Player");
         centerPos = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width / 2, Screen.height / 2));
         targetPos = centerPos;
+        sc = GameObject.Find("Score").GetComponent<Text>();
     }
 
+    /// <summary>
+    /// Boss movement and shooting logic.
+    /// Boss shoots regarding to fire rate.
+    /// </summary>
+    /// See <see cref="fireRate"/>.
     void Update()
     {
-        float angle = Random.Range(0, 2 * Mathf.PI);
-
         if (Vector2.Distance(transform.position, targetPos) < 0.01)
         {
             if (targetPos == centerPos)
-            {   //Switches moving behaviour according to boss type
+            {
+                float angle = Random.Range(0, 2 * Mathf.PI);
+                //Switches moving behaviour according to boss type
                 switch (type)
                 {
                     //Target is player on y-axis and moves randomly on x-axis
@@ -56,6 +75,10 @@ public class Boss : Enemy
         fireTime -= Time.deltaTime;
     }
 
+    /// <summary>
+    /// Instantiate ammo in front of enemy.
+    /// </summary>
+    /// See <see cref="ammo"/>.
     void Shoot()
     {
         GameObject enemyAmmo = Instantiate(ammo, transform.position + transform.up * 2.0f, Quaternion.identity);

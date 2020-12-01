@@ -6,19 +6,15 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
-    private Button playButton;
-    private Button quitButton;
-    private Button settingsButton;
-    private Button scoreButton;
-
+    Button playButton, quitButton, settingsButton, scoreButton;
     GameObject mainMenu, settingsMenu, scoresMenu;
 
     void Start()
     {
-        playButton = (Button)GameObject.Find("PlayButton").GetComponent<Button>();
-        quitButton = (Button)GameObject.Find("QuitButton").GetComponent<Button>();
-        settingsButton = (Button)GameObject.Find("SettingsButton").GetComponent<Button>();
-        scoreButton = (Button)GameObject.Find("ScoreButton").GetComponent<Button>();
+        playButton = GameObject.Find("PlayButton").GetComponent<Button>();
+        quitButton = GameObject.Find("QuitButton").GetComponent<Button>();
+        settingsButton = GameObject.Find("SettingsButton").GetComponent<Button>();
+        scoreButton = GameObject.Find("ScoreButton").GetComponent<Button>();
 
         settingsMenu = GameObject.Find("SettingsMenu");
         mainMenu = GameObject.Find("MainMenu");
@@ -33,24 +29,28 @@ public class MainMenu : MonoBehaviour
         settingsButton.onClick.AddListener(() => Settings());
         scoreButton.onClick.AddListener(() => Scores());
 
+        Button[] buttons = gameObject.GetComponentsInChildren<Button>(true);
+        foreach (Button button in buttons)
+        {
+            if (button.name.StartsWith("Back"))
+            {
+                button.onClick.AddListener(() => Back());
+            }
+        }
     }
 
-    //Start game - Load game scene and set boolean to false so game starts
     public void PlayGame()
     {
         Debug.Log("Starting Game....");
         SceneManager.LoadScene("Game");
-        PauseMenu.GameIsPaused = false;
     }
 
-    //Quit whole application
     public void QuitGame()
     {
         Debug.Log("Quit.");
         Application.Quit();
     }
 
-    //Open settings menu and set main menu off
     public void Settings()
     {
         Debug.Log("Settings...");
@@ -58,12 +58,23 @@ public class MainMenu : MonoBehaviour
         settingsMenu.SetActive(true);
     }
 
-    //Open scores menu and set main menu off
     public void Scores()
     {
         Debug.Log("Scores....");
         mainMenu.SetActive(false);
         scoresMenu.SetActive(true);
+    }
+
+    void Back()
+    {
+        foreach (Transform child in transform)
+        {
+            if (child.gameObject.name.EndsWith("Menu"))
+            {
+                child.gameObject.SetActive(false);
+            }
+        }
+        mainMenu.SetActive(true);
     }
 
 }
