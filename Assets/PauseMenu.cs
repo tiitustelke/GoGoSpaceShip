@@ -10,6 +10,7 @@ public class PauseMenu : MonoBehaviour
 
     void Start()
     {
+
         Button[] buttons = pauseMenu.GetComponentsInChildren<Button>(true);
         foreach (Button button in buttons)
         {
@@ -30,6 +31,8 @@ public class PauseMenu : MonoBehaviour
 
     void Update()
     {
+
+        // If user presses esc key, open pause menu
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (pauseMenu.activeSelf)
@@ -43,6 +46,7 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
+    //resume the game, change boolean back to false and time back on.
     public void Resume()
     {
         pauseMenu.SetActive(false);
@@ -51,6 +55,7 @@ public class PauseMenu : MonoBehaviour
         
     }
 
+    //pause the game, boolean to true and freezing time.
     public void Pause()
     {
         pauseMenu.SetActive(true);

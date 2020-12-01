@@ -6,9 +6,9 @@ public class GameOver : MonoBehaviour
 {
     
    
-    private Button playButton;
-    private Button quitButton;
-    private Button menuButton;
+    Button playButton;
+    Button quitButton;
+    Button menuButton;
 
     InputField playerName;
     GameObject GameOverMenu, InputMenu;
@@ -18,14 +18,16 @@ public class GameOver : MonoBehaviour
     {
         //PauseMenu.GameIsPaused = true;
 
-        quitButton = GameObject.Find("QuitButton").GetComponent<Button>();
-        playButton = GameObject.Find("PlayButton").GetComponent<Button>();
-        menuButton = GameObject.Find("MenuButton").GetComponent<Button>();
         playerName = GameObject.Find("UserInput").GetComponent<InputField>();
+
+
         GameOverMenu = GameObject.Find("GameOverMenu");
         InputMenu = GameObject.Find("InputMenu");
 
-        quitButton.onClick.AddListener(() => Quit());
+        quitButton = GameObject.Find("QuitButton").GetComponent<Button>();
+        playButton = GameObject.Find("PlayButton").GetComponent<Button>();
+        menuButton = GameObject.Find("MenuButton").GetComponent<Button>();
+        quitButton.onClick.AddListener(() => QuitGame());
         playButton.onClick.AddListener(() => PlayAgain());
         menuButton.onClick.AddListener(() => OpenMenu());
 
@@ -58,7 +60,7 @@ public class GameOver : MonoBehaviour
     }
 
     //Quit Game
-    void Quit()
+    void QuitGame()
     {
         Debug.Log("Quit...");
         Application.Quit();
