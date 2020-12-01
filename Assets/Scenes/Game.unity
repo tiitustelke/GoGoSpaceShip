@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 24396062}
   - component: {fileID: 24396061}
   m_Layer: 5
-  m_Name: Text
+  m_Name: StoryText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -155,7 +155,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 26, y: 123}
+  m_AnchoredPosition: {x: -22, y: 123}
   m_SizeDelta: {x: 674.1628, y: 54.73471}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &24396061
@@ -1006,7 +1006,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 457de5316db132648b34292f74e26eac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textBox: {fileID: 24396059}
 --- !u!1 &952019765
 GameObject:
   m_ObjectHideFlags: 0
@@ -1979,7 +1978,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 457de5316db132648b34292f74e26eac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textBox: {fileID: 24396059}
 --- !u!1 &1826016889
 GameObject:
   m_ObjectHideFlags: 0

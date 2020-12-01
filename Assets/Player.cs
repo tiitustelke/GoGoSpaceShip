@@ -24,13 +24,7 @@ public class Player : MonoBehaviour
     /// <summary>
     /// Used to declare some variables and set player health to maximum. 
     /// </summary>
-    void Awake()
-    {
-        if (GameObject.FindGameObjectsWithTag("Player").Length > 1)
-        {
-            Destroy(gameObject);
-        }
-    }
+
     void Start()
     {
         
@@ -40,8 +34,6 @@ public class Player : MonoBehaviour
 
         PlayerInfo.health = 100f;
 
-        DontDestroyOnLoad(gameObject);      //To let the player move after restarting
-        
     }
 
     
