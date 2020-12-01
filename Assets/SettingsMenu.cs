@@ -1,21 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.UI;
 
 public class SettingsMenu : MonoBehaviour
 {
 
     Button backButton;
-    MainMenu mainMenu;
-    SettingsMenu settingsMenu;
+    GameObject mainMenu, settingsMenu;
     Slider volumeSlider;
 
- 
+    public AudioMixer audioMixer;
+    float volumeValue;
+
     void Start()
     {
-        settingsMenu = GameObject.Find("SettingsMenu").GetComponent<SettingsMenu>();
-        mainMenu = GameObject.Find("MainMenu").GetComponent<MainMenu>();
+        settingsMenu = GameObject.Find("SettingsMenu");
+        mainMenu = GameObject.Find("MainMenu");
 
         backButton = GameObject.Find("BackButton").GetComponent<Button>();
 
@@ -27,19 +29,25 @@ public class SettingsMenu : MonoBehaviour
 
     }
 
+    //Go back to main menu - set settings menu off and active menu menu
     public void GoBack()
     {
         Debug.Log("Back to main menu...");
-        mainMenu.gameObject.SetActive(true);
-        settingsMenu.gameObject.SetActive(false);
+        mainMenu.SetActive(true);
+        settingsMenu.SetActive(false);
     }
 
+    //Get volume value from slider
     void OnValueChanged()
     {
-        float volumeValue = volumeSlider.value * 100;
+        volumeValue = volumeSlider.value * 100;
         Debug.Log(volumeValue);
     }
 
+    public void setVolume(float volume)
+    {
+        audioMixer.SetFloat("mixervolumename", volumeValue);
+    }
     
 
 }
