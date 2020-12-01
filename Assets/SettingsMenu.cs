@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.UI;
 
 public class SettingsMenu : MonoBehaviour
@@ -10,7 +11,9 @@ public class SettingsMenu : MonoBehaviour
     GameObject mainMenu, settingsMenu;
     Slider volumeSlider;
 
- 
+    public AudioMixer audioMixer;
+    float volumeValue;
+
     void Start()
     {
         settingsMenu = GameObject.Find("SettingsMenu");
@@ -37,10 +40,14 @@ public class SettingsMenu : MonoBehaviour
     //Get volume value from slider
     void OnValueChanged()
     {
-        float volumeValue = volumeSlider.value * 100;
+        volumeValue = volumeSlider.value * 100;
         Debug.Log(volumeValue);
     }
 
+    public void setVolume(float volume)
+    {
+        audioMixer.SetFloat("mixervolumename", volumeValue);
+    }
     
 
 }
