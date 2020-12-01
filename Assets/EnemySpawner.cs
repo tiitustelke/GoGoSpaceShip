@@ -16,7 +16,6 @@ public class EnemySpawner : MonoBehaviour
 
     GameObject boss;
 
-
     // Start is called before the first frame update
     void Start()
     {
@@ -28,16 +27,13 @@ public class EnemySpawner : MonoBehaviour
             new Level(2, 3, 30),
             new Level(2, 3, 30)
         };
-        PlayerInfo.level = 0;
         lastUpdate = 0;
         lastSpawn = 0;
         spawnCount = 0;
         newBoss = 0;
         totalSpawns = 0;
-
-
-
     }
+
     /// <summary>
     /// In update method the two levels are changed according to mod 2 of the running level number.
     /// More enemies to spawn during the level, at a time are added and time between enemy spawns is shortened.

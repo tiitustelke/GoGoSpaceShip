@@ -30,10 +30,9 @@ public class Player : MonoBehaviour
         min = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, camDistance));
         max = Camera.main.ViewportToWorldPoint(new Vector3(1, 1, camDistance));
 
+        PlayerInfo.level = 0;
         PlayerInfo.health = 100f;
     }
-
-
 
     // Update is called once per frame
     /// <summary>
