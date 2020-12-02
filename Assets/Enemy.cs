@@ -16,7 +16,7 @@ public class Enemy : MonoBehaviour
     public float health;
 
     private float movingTime;
-    private bool movingUp, dead = false;
+    public bool movingUp, dead = false;
 
     public GameObject explosion;
 

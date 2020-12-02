@@ -137,5 +137,7 @@ MonoBehaviour:
   movementSpeed: 5
   hitDamage: 20
   health: 20
+  movingUp: 0
+  dead: 0
   explosion: {fileID: 5745571014550976779, guid: d3816495d4fed4ecdbdd179c5c39fa8b,
     type: 3}
