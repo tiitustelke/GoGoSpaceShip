@@ -72,6 +72,26 @@ public class MainMenu : MonoBehaviour
     {
         mainMenu.SetActive(false);
         scoresMenu.SetActive(true);
+
+        DataSaver dataSaver = new DataSaver();
+        PlayerData playerData = dataSaver.ReadPlayerData();
+        playerData.PlayerInfos.Sort(new HighestScoreFirst());
+        Debug.Log(playerData.PlayerInfos.Count);
+        string topThree = "";
+        for (int i = 0; i < playerData.PlayerInfos.Count; i++)
+        {
+            if (i < 2)
+            {
+                topThree += playerData.PlayerInfos[i].Name + "\t\t\t" + playerData.PlayerInfos[i].Score + "\n";
+            }
+            else
+            {
+                topThree += playerData.PlayerInfos[i].Name + "\t\t\t" + playerData.PlayerInfos[i].Score;
+                break;
+            }
+        }
+        Text scores = GameObject.Find("Scoreboard").GetComponent<Text>();
+        scores.text = topThree;
     }
 
     /// <summary>
