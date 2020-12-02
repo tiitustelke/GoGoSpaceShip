@@ -12,6 +12,10 @@ public class SettingsMenu : MonoBehaviour
     private Slider volumeSlider;
     public float volumeValue;
 
+    /// <summary>
+    /// <param name= "firstPlayInt"> Used to check if player started the game for first time or not.</param>
+    /// If Player plays for first time, set default settings otherwise use already saved settings.
+    /// </summary>
     void Start()
     {
 
@@ -38,17 +42,21 @@ public class SettingsMenu : MonoBehaviour
     }
 
     
-    //Get volume value from slider
+    /// <summary>
+    /// Get volume value from volume-slider and set the value to AudioListener, which adjusts all game volumes.
+    /// </summary>
     public void SetVolume()
     {
         //Get value from slider, and print it to debuglog.
         volumeValue = volumeSlider.value;
-        Debug.Log(volumeValue);
 
         //Set volume to audiolistener to change gameaudio volume
         AudioListener.volume = volumeValue;
     }
 
+    /// <summary>
+    /// Save volume value to player prefs.
+    /// </summary>
     public void SaveSoundSettings()
     {
         //Saving volume value to player prefs.

@@ -7,8 +7,13 @@ public class GameOver : MonoBehaviour
     InputField playerName;
     GameObject inputMenu, gameOverMenu;
 
+    /// <summary>
+    /// <param name = "objectName"> Used to get InputMenu and GameOverMenu and Buttons from them </param>
+    /// playerName gets text from User input.
+    /// </summary>
     void Start()
     {
+
         playerName = GameObject.Find("UserInput").GetComponent<InputField>();
 
         foreach (Transform child in transform)
@@ -45,6 +50,10 @@ public class GameOver : MonoBehaviour
         }
     }
     
+
+    /// <summary>
+    /// If player presses enter, and text input is not empty > save name and score to playerData.
+    /// </summary>
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Return) && playerName.text.Length > 0)
@@ -65,19 +74,23 @@ public class GameOver : MonoBehaviour
         }
     }
 
-    //Quit Game
+    
     void QuitGame()
     {
         Application.Quit();
     }
 
-    //Start new game
+    /// <summary>
+    /// Start new game
+    /// </summary>
     void PlayAgain()
     {
         SceneManager.LoadScene("Game");
     }
 
-    // Load menu scene
+    /// <summary>
+    /// Load main menu scene
+    /// </summary>
     void OpenMenu()
     {
         SceneManager.LoadScene("MainMenu");
