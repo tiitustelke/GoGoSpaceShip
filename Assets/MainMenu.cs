@@ -9,6 +9,10 @@ public class MainMenu : MonoBehaviour
     Button playButton, quitButton, settingsButton, scoreButton;
     GameObject mainMenu, settingsMenu, scoresMenu;
 
+    /// <summary>
+    /// Get all buttons, inactive settings menu and scores menu, and add methods to buttons.
+    /// foreach loop gives Back() method to every back button in main menu.
+    /// </summary>
     void Start()
     {
 
@@ -39,36 +43,40 @@ public class MainMenu : MonoBehaviour
         }
     }
 
+
     public void PlayGame()
     {
         Debug.Log("Starting Game....");
         SceneManager.LoadScene("Game");
     }
 
+    /// <summary>
+    /// Quit application and save volume values to player prefs with SaveSoundSettings-method.
+    /// </summary>
     public void QuitGame()
     {
         //Save audio volume value while quitting.
         SettingsMenu sMenu = new SettingsMenu();
         sMenu.SaveSoundSettings();
 
-        Debug.Log("Quit.");
         Application.Quit();
     }
 
     public void Settings()
     {
-        Debug.Log("Settings...");
         mainMenu.SetActive(false);
         settingsMenu.SetActive(true);
     }
 
     public void Scores()
     {
-        Debug.Log("Scores....");
         mainMenu.SetActive(false);
         scoresMenu.SetActive(true);
     }
 
+    /// <summary>
+    /// Hides / shows Main menu-menus, after checking if player pressed Back button or not
+    /// </summary>
     void Back()
     {
         foreach (Transform child in transform)

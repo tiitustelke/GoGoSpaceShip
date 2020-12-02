@@ -8,6 +8,9 @@ public class PauseMenu : MonoBehaviour
 {
     public GameObject pauseMenu;
 
+    /// <summary>
+    /// Get Buttons from pause menu and give methods to them.
+    /// </summary>
     void Start()
     {
         pauseMenu.SetActive(false);
@@ -30,9 +33,11 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// If user presses esc key, open pause menu.
+    /// </summary>
     void Update()
     {
-        // If user presses esc key, open pause menu
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (pauseMenu.activeSelf)
@@ -46,16 +51,19 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
-    //resume the game, change boolean back to false and time back on.
+    /// <summary>
+    /// Resume the game, inactive pausemenu and put game's time back on.
+    /// </summary>
     public void Resume()
     {
         pauseMenu.SetActive(false);
         PlayerInfo.paused = false;
         Time.timeScale = 1f;
-        
     }
 
-    //pause the game, boolean to true and freezing time.
+    /// <summary>
+    /// Pause the game, set pausemenu active via SetActive method and freezing time with Time.timeScale.
+    /// </summary>
     public void Pause()
     {
         pauseMenu.SetActive(true);
@@ -65,13 +73,14 @@ public class PauseMenu : MonoBehaviour
 
     public void QuitGame()
     {
-        Debug.Log("Quit.");
         Application.Quit();
     }
 
+    /// <summary>
+    /// Load main menu scene
+    /// </summary>
     public void GoToMenu()
     {
-        PlayerInfo.paused = false;
         Time.timeScale = 1f;
         PlayerInfo.paused = false;
         SceneManager.LoadScene("MainMenu");
