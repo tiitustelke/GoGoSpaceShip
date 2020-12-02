@@ -5,29 +5,24 @@ using UnityEngine.UI;
 
 public class StorySubtitles : MonoBehaviour
 {
-    //pitää tehdä boolean jolla saa asetuksista tekstitykset pois.
-    private Text textBox;
+    Text textBox;
+
     // Start is called before the first frame update
     void Start()
     {
         textBox = GameObject.Find("StoryText").GetComponent<Text>();
         if (PlayerInfo.story)
         {
-            playIntro();
+            PlayIntro();
         }
         
     }
 
-    void Update()
+    public void PlayIntro()
     {
-        
+        StartCoroutine("Intro");
     }
 
-    public void playIntro()
-        {
-            StartCoroutine("Intro");
-            
-        }
     IEnumerator Intro()
     {
         //FindObjectOfType<AudioManager>().Play("Intro");
@@ -51,11 +46,6 @@ public class StorySubtitles : MonoBehaviour
 
     }
     
-        
-
-
-
-
     IEnumerator PreBossOne()
     {
         //FindObjectOfType<AudioManager>().Play("BossOne");

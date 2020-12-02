@@ -4,78 +4,82 @@ using UnityEngine.UI;
 
 public class GameOver : MonoBehaviour
 {
-
-    Button playButton, quitButton, menuButton;
-    GameObject gameOverMenu, InputMenu, goB;
     InputField playerName;
+    GameObject inputMenu, gameOverMenu;
 
     void Start()
     {
-        gameOverMenu = GameObject.Find("GameOverMenu");
-        InputMenu = GameObject.Find("InputMenu");
-
-        playButton = GameObject.Find("PlayButton").GetComponent<Button>();
-        quitButton = GameObject.Find("QuitButton").GetComponent<Button>();
-        menuButton = GameObject.Find("MenuButton").GetComponent<Button>();
-
-
         playerName = GameObject.Find("UserInput").GetComponent<InputField>();
 
-        //Hide Gameover menu, before it's needed
-        gameOverMenu.SetActive(false);
-
-        
-         playButton.onClick.AddListener(() => PlayAgain());
-         menuButton.onClick.AddListener(() => GoToMenu());
-         quitButton.onClick.AddListener(() => QuitGame());
+        foreach (Transform child in transform)
+        {
+            string objectName = child.gameObject.name;
+            if (objectName.EndsWith("Menu"))
+            {
+                switch (objectName)
+                {
+                    case "InputMenu":
+                        inputMenu = child.gameObject;
+                        break;
+                    case "GameOverMenu":
+                        gameOverMenu = child.gameObject;
+                        Button[] buttons = gameOverMenu.GetComponentsInChildren<Button>();
+                        foreach (Button button in buttons)
+                        {
+                            switch (button.name)
+                            {
+                                case "QuitButton":
+                                    button.onClick.AddListener(() => QuitGame());
+                                    break;
+                                case "PlayButton":
+                                    button.onClick.AddListener(() => PlayAgain());
+                                    break;
+                                case "MenuButton":
+                                    button.onClick.AddListener(() => OpenMenu());
+                                    break;
+                            }
+                        }
+                        break;
+                }
+            }
+        }
     }
-
+    
     void Update()
     {
-
-
-        if (Input.GetKeyDown(KeyCode.Return) && playerName.enabled && playerName.text.Length > 0)
-            {
-            //Get string from input field
-            string playerNameText = playerName.text;
-
+        if (Input.GetKeyDown(KeyCode.Return) && playerName.text.Length > 0)
+        {
             DataSaver dataSaver = new DataSaver();
             PlayerData playerData = dataSaver.ReadPlayerData();
-            Info info = new Info();
-            info.Score = PlayerInfo.score;
-            dataSaver.SavePlayerData(playerData);
-            info.Name = playerName.text;
+            Info info = new Info
+            {
+                Name = playerName.text,
+                Score = PlayerInfo.score
+            };
             playerData.PlayerInfos.Add(info);
             dataSaver.SavePlayerData(playerData);
-            playerName.enabled = false;
-
-            Debug.Log(playerNameText);
-            playerName.text = "";
 
             // Disable Input-menu and activate GameOver Menu
+            inputMenu.SetActive(false);
             gameOverMenu.SetActive(true);
-            InputMenu.SetActive(false);
-            }
+        }
     }
 
     //Quit Game
     void QuitGame()
     {
-        Debug.Log("Quit...");
         Application.Quit();
     }
 
     //Start new game
     void PlayAgain()
     {
-        Debug.Log("Starting New Game....");
         SceneManager.LoadScene("Game");
     }
 
     // Load menu scene
-    void GoToMenu()
+    void OpenMenu()
     {
-        Debug.Log("Opening MainMenu....");
         SceneManager.LoadScene("MainMenu");
     }
 }
