@@ -27,10 +27,8 @@ public class PlayerWeapon : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-
             collision.gameObject.GetComponent<Enemy>().DecreaseHealth(5f);
 
-            FindObjectOfType<AudioManager>().Play("HitMarker");
 
             Destroy(gameObject);
         }

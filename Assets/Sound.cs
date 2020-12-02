@@ -2,8 +2,14 @@
 using UnityEngine;
 
 [System.Serializable]
+
+
+/// <summary>
+/// This class Contains adjustable settings for AudioManager gameObject
+/// </summary>
 public class Sound
 {
+
     public string name;
 
     public AudioClip clip;

@@ -49,7 +49,7 @@ public class GameOver : MonoBehaviour
             }
         }
     }
-    
+
 
     /// <summary>
     /// If player presses enter, and text input is not empty > save name and score to playerData.
@@ -74,7 +74,7 @@ public class GameOver : MonoBehaviour
         }
     }
 
-    
+
     void QuitGame()
     {
         Application.Quit();

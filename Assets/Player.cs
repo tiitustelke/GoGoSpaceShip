@@ -88,7 +88,7 @@ public class Player : MonoBehaviour
         {
             DecreaseHealth(collision.gameObject.GetComponent<Enemy>().hitDamage);
             FindObjectOfType<AudioManager>().Play("CrashSound");
-            Debug.Log("Törmäys");
+            
 
             Destroy(collision.gameObject);
             FindObjectOfType<AudioManager>().Play("CrashSound");
@@ -110,11 +110,23 @@ public class Player : MonoBehaviour
 
             if (PlayerInfo.health <= 0) // The player is killed, load game over scene
             {
+               
                 SceneManager.LoadScene("GameOver");
             }
 
         }
     }
+
+    public void IncreaseHealth(float heal)
+    {
+        PlayerInfo.health += heal;
+
+    }
+
+
+
+
+
 
 
 }

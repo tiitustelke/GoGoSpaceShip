@@ -20,6 +20,7 @@ public class Enemy : MonoBehaviour
 
     public GameObject explosion;
 
+
     public static Text sc;
 
     // Start is called before the first frame update
@@ -69,6 +70,7 @@ public class Enemy : MonoBehaviour
     /// See <see cref="health"/>.
     public void DecreaseHealth(float damage)
     {
+        FindObjectOfType<AudioManager>().Play("HitMarker");
         health -= damage;
         if (health <= 0 && !dead)
         {
@@ -78,6 +80,11 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject);
             PlayerInfo.score++;
             UpdateScore();
+            HealthSpawner spwner = GameObject.Find("HealthSpawner").GetComponent<HealthSpawner>();
+            spwner.SpawnHealth(transform.position);
+
+
+
         }
     }
 
@@ -85,4 +92,7 @@ public class Enemy : MonoBehaviour
     {
         sc.text = "Score: " + PlayerInfo.score.ToString();
     }
+
+
+
 }

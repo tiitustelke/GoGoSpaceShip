@@ -71,6 +71,7 @@ public class Boss : Enemy
             Shoot();
             fireTime = fireRate;
         }
+
         //Updates time to fireTime
         fireTime -= Time.deltaTime;
     }
