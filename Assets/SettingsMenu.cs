@@ -12,6 +12,8 @@ public class SettingsMenu : MonoBehaviour
     private Slider volumeSlider;
     public float volumeValue;
 
+    // Credits: https://www.youtube.com/watch?v=xNHSGMKtlv4&ab_channel=JohnFrench 
+
     /// <summary>
     /// <param name= "firstPlayInt"> Used to check if player started the game for first time or not.</param>
     /// If Player plays for first time, set default settings otherwise use already saved settings.
