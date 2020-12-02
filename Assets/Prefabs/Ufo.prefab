@@ -132,12 +132,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ea4fb66a4cefd4ba0865edc4c499f7a5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   type: 1
   movementSpeed: 5
   hitDamage: 20
   health: 20
+  movingUp: 0
   dead: 0
   explosion: {fileID: 5745571014550976779, guid: d3816495d4fed4ecdbdd179c5c39fa8b,
     type: 3}
@@ -151,7 +152,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ad6dce55f5924ad4ca3226f42a178d9b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   HealthBuffPreFab: {fileID: 7280054675473458694, guid: 7f3e8fdcfd2890d43815ac3da1fd9041,
     type: 3}

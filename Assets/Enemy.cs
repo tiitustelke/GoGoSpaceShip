@@ -3,16 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// The Enemy class.
+/// The logic of enemies is implemented in this class.
+/// </summary>
 public class Enemy : MonoBehaviour
 {
+
     public EnemyType type;
     public float movementSpeed;
     public float hitDamage;
     public float health;
 
     private float movingTime;
-    private bool movingUp;
-    public bool dead = false;
+    public bool movingUp, dead = false;
+
     public GameObject explosion;
 
 
@@ -27,6 +32,9 @@ public class Enemy : MonoBehaviour
     }
 
     // Update is called once per frame
+    /// <summary>
+    /// Enemy movement logic.
+    /// </summary>
     void Update()
     {
         switch (type)
@@ -46,11 +54,20 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Destroy the enemy when it becomes inivisible.
+    /// </summary>
     private void OnBecameInvisible()
     {
         Destroy(gameObject);
     }
 
+    /// <summary>
+    /// Decrase the health of enemy.
+    /// If the health gets a value of 0, the enemy is being destroyed among with explosion effect.
+    /// </summary>
+    /// <param name="damage">The amount of damage to substract from health.</param>
+    /// See <see cref="health"/>.
     public void DecreaseHealth(float damage)
     {
         FindObjectOfType<AudioManager>().Play("HitMarker");
@@ -73,7 +90,7 @@ public class Enemy : MonoBehaviour
 
     private void UpdateScore()
     {
-        sc.text = PlayerInfo.score.ToString();
+        sc.text = "Score: " + PlayerInfo.score.ToString();
     }
 
 

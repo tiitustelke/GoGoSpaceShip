@@ -6,70 +6,84 @@ using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
-    public static bool GameIsPaused = false;
+    public GameObject pauseMenu;
 
-    public GameObject PauseMenuUI;
-    Button menuButton;
-    Button resumeButton;
-    Button quitButton;
-
-
+    /// <summary>
+    /// Get Buttons from pause menu and give methods to them.
+    /// </summary>
     void Start()
     {
-        /*
-         Debug.Log("PauseMenuWorking");
-         menuButton = GameObject.Find("MenuButton").GetComponent<Button>();
-         resumeButton = GameObject.Find("ResumeButton").GetComponent<Button>();
-         quitButton = GameObject.Find("PauseQuitButton").GetComponent<Button>();
+        pauseMenu.SetActive(false);
 
-         menuButton.onClick.AddListener(delegate { GoToMenu(); });
-         resumeButton.onClick.AddListener(() => Resume());
-         quitButton.onClick.AddListener(() => QuitGame());
-        */
+        Button[] buttons = pauseMenu.GetComponentsInChildren<Button>(true);
+        foreach (Button button in buttons)
+        {
+            switch (button.name)
+            {
+                case "MenuButton":
+                    button.onClick.AddListener(() => GoToMenu());
+                    break;
+                case "ResumeButton":
+                    button.onClick.AddListener(() => Resume());
+                    break;
+                case "PauseQuitButton":
+                    button.onClick.AddListener(() => QuitGame());
+                    break;
+            }
+        }
     }
 
+    /// <summary>
+    /// If user presses esc key, open pause menu.
+    /// </summary>
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (GameIsPaused)
+            if (pauseMenu.activeSelf)
             {
-                Debug.Log("Resume game..");
                 Resume();
             }
             else
             {
-                Debug.Log("Pause game..");
                 Pause();
             }
         }
     }
 
+    /// <summary>
+    /// Resume the game, inactive pausemenu and put game's time back on.
+    /// </summary>
     public void Resume()
     {
-        PauseMenuUI.SetActive(false);
+        pauseMenu.SetActive(false);
+        PlayerInfo.paused = false;
         Time.timeScale = 1f;
-        GameIsPaused = false;
-        
     }
 
+    /// <summary>
+    /// Pause the game, set pausemenu active via SetActive method and freezing time with Time.timeScale.
+    /// </summary>
     public void Pause()
     {
-        PauseMenuUI.SetActive(true);
+        pauseMenu.SetActive(true);
+        PlayerInfo.paused = true;
         Time.timeScale = 0f;
-        GameIsPaused = true;
     }
 
     public void QuitGame()
     {
-        Debug.Log("Quit.");
         Application.Quit();
     }
 
+    /// <summary>
+    /// Load main menu scene
+    /// </summary>
     public void GoToMenu()
     {
-        Debug.Log("Menu..");
         Time.timeScale = 1f;
+        PlayerInfo.paused = false;
         SceneManager.LoadScene("MainMenu");
     }
+
 }

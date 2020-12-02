@@ -2,7 +2,11 @@
 using System.Collections.Generic;
 using System;
 using UnityEngine;
-
+using UnityEngine.UI;
+/// <summary>
+/// This script manages spawning of all enemies including bosses. Levels are also managed by this script.
+/// See <see cref="Enemy"/>, <see cref="Boss"/>
+/// </summary>
 public class EnemySpawner : MonoBehaviour
 {
     private float lastUpdate, lastSpawn, multiplier;
@@ -14,8 +18,9 @@ public class EnemySpawner : MonoBehaviour
 
     public GameObject[] enemyTypes, bossTypes;
 
-    GameObject boss;
+    public Text level;
 
+    GameObject boss;
 
     // Start is called before the first frame update
     void Start()
@@ -28,16 +33,15 @@ public class EnemySpawner : MonoBehaviour
             new Level(2, 3, 30),
             new Level(2, 3, 30)
         };
-        PlayerInfo.level = 0;
         lastUpdate = 0;
         lastSpawn = 0;
         spawnCount = 0;
         newBoss = 0;
         totalSpawns = 0;
 
-
-
+        level = GameObject.Find("Level").GetComponent<Text>();
     }
+
     /// <summary>
     /// In update method the two levels are changed according to mod 2 of the running level number.
     /// More enemies to spawn during the level, at a time are added and time between enemy spawns is shortened.
@@ -85,6 +89,8 @@ public class EnemySpawner : MonoBehaviour
                 if (levels[PlayerInfo.level % 2].maxEnemies == totalSpawns)
                 {
                     PlayerInfo.level++;
+                    level.text = "Level: " + (PlayerInfo.level + 1).ToString();
+
                     totalSpawns = 0;
                     lastSpawn -= 2;
                     int mod = PlayerInfo.level % 2;             //counts mod 2 from running level
@@ -100,7 +106,9 @@ public class EnemySpawner : MonoBehaviour
         }
         
     }
-
+    /// <summary>
+    /// Spawns a new boss
+    /// </summary>
     void SpawnBoss()
     {
 

@@ -1,0 +1,450 @@
+{
+  "homepages": [],
+  "source_base_path": "/Users/mikael/GoGoSpaceShip/Documentation",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GoGoSpaceShip.AimBeam.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GoGoSpaceShip.AimBeam.html",
+          "hash": "ZhGeHLBq0SGWez66HtTrkA=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GoGoSpaceShip.Background.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GoGoSpaceShip.Background.html",
+          "hash": "upzq4anHqxKZBbAdKQ3znA=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GoGoSpaceShip.Boss.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GoGoSpaceShip.Boss.html",
+          "hash": "OD9q1rANQtUTc/GNA9R00Q=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GoGoSpaceShip.Crosshair.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GoGoSpaceShip.Crosshair.html",
+          "hash": "udjsV2GYDxHzIocv/7H7hQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GoGoSpaceShip.CustomPointer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GoGoSpaceShip.CustomPointer.html",
+          "hash": "FTn3tIUnPXu8UnwXQjWgtQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GoGoSpaceShip.DataSaver.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GoGoSpaceShip.DataSaver.html",
+          "hash": "VbB6mbxxJZ5/25XxjK+Kwg=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GoGoSpaceShip.Enemy.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GoGoSpaceShip.Enemy.html",
+          "hash": "UqjWYUpDeDZ1HeGaoBz40g=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GoGoSpaceShip.EnemySpawner.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GoGoSpaceShip.EnemySpawner.html",
+          "hash": "fN5cR5tWaM4lWzO//2byAQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GoGoSpaceShip.EnemyType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GoGoSpaceShip.EnemyType.html",
+          "hash": "gGA4wQswPHFzFRCGF0ULcw=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GoGoSpaceShip.ExampleShipControl.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GoGoSpaceShip.ExampleShipControl.html",
+          "hash": "+L26vSx1ell28moT88tNAQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GoGoSpaceShip.GameController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GoGoSpaceShip.GameController.html",
+          "hash": "CP21mcaUiBR6i6/cKkPIVg=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GoGoSpaceShip.HealthBar.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GoGoSpaceShip.HealthBar.html",
+          "hash": "9MxYAhTuy2uoOgUYCAx7xQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GoGoSpaceShip.HighestScoreFirst.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GoGoSpaceShip.HighestScoreFirst.html",
+          "hash": "cDb670/4iQrNDsmh65bhew=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GoGoSpaceShip.Level.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GoGoSpaceShip.Level.html",
+          "hash": "jnwO6uneHu+VYqHrX5xZ8Q=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GoGoSpaceShip.LookAtPlayer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GoGoSpaceShip.LookAtPlayer.html",
+          "hash": "+PGE0KiSG3OZiFwDCy5Jvg=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GoGoSpaceShip.PSDestroy.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GoGoSpaceShip.PSDestroy.html",
+          "hash": "2WhNltEKf5yV2VJodzwmXw=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GoGoSpaceShip.ParallaxLayer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GoGoSpaceShip.ParallaxLayer.html",
+          "hash": "cK7KEHnGGQqCkMdmlm9Cmw=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GoGoSpaceShip.Player.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GoGoSpaceShip.Player.html",
+          "hash": "A2b0RWvvIFm6+eF4YvhGgA=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GoGoSpaceShip.PlayerControlledTurret.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GoGoSpaceShip.PlayerControlledTurret.html",
+          "hash": "IotDmLeA5z7XcUPMmmdCKQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GoGoSpaceShip.PlayerData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GoGoSpaceShip.PlayerData.html",
+          "hash": "6o990JBZ7KwUvUVTUjT8DQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GoGoSpaceShip.PlayerInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GoGoSpaceShip.PlayerInfo.html",
+          "hash": "fUczLGK1MeqI0cOtcU2y+g=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GoGoSpaceShip.PlayerWeapon.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GoGoSpaceShip.PlayerWeapon.html",
+          "hash": "KrprvY95jvk0HUDzQi5sPQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GoGoSpaceShip.Projectile.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GoGoSpaceShip.Projectile.html",
+          "hash": "9JbpLDG8cYGlxeB7k1KhVw=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GoGoSpaceShip.ShipCamera.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GoGoSpaceShip.ShipCamera.html",
+          "hash": "oCehtEJav1hZBi333k5J9w=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GoGoSpaceShip.Stats.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GoGoSpaceShip.Stats.html",
+          "hash": "kQ/JMqxlItTPjM213nBHIg=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GoGoSpaceShip.Weapon.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GoGoSpaceShip.Weapon.html",
+          "hash": "YcvC9iYeZw0xmXayLua4Sw=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GoGoSpaceShip.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GoGoSpaceShip.html",
+          "hash": "L8crUf177yTz+o6/45H1Eg=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "api/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "api/index.html",
+          "hash": "cPE+gEMKGN048oKm7IvOig=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/toc.html",
+          "hash": "i5P2rgTGlx5WXCyMO00QLw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/intro.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/intro.html",
+          "hash": "ddhc3PaOKueJW4guMd++wQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "articles/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "articles/toc.html",
+          "hash": "gB8AESyvNru97tzIZofEEg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html",
+          "hash": "olnY53P1E+8AuYAzyLp5zg=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html",
+          "hash": "+rHUkRZHZRi5gd1aTU6lJA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    }
+  ],
+  "incremental_info": [
+    {
+      "status": {
+        "can_incremental": true,
+        "incrementalPhase": "build",
+        "total_file_count": 0,
+        "skipped_file_count": 0
+      },
+      "processors": {
+        "ConceptualDocumentProcessor": {
+          "can_incremental": true,
+          "incrementalPhase": "build",
+          "total_file_count": 3,
+          "skipped_file_count": 3
+        },
+        "ManagedReferenceDocumentProcessor": {
+          "can_incremental": true,
+          "incrementalPhase": "build",
+          "total_file_count": 27,
+          "skipped_file_count": 27
+        },
+        "TocDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build",
+          "total_file_count": 0,
+          "skipped_file_count": 0
+        }
+      }
+    },
+    {
+      "status": {
+        "can_incremental": true,
+        "details": "Can support incremental post processing.",
+        "incrementalPhase": "postProcessing",
+        "total_file_count": 0,
+        "skipped_file_count": 0
+      },
+      "processors": {}
+    }
+  ],
+  "version_info": {},
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}
