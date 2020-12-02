@@ -11,9 +11,10 @@ public class Enemy : MonoBehaviour
     public float health;
 
     private float movingTime;
-    private bool movingUp, dead = false;
-
+    private bool movingUp;
+    public bool dead = false;
     public GameObject explosion;
+
 
     public static Text sc;
 
@@ -52,6 +53,7 @@ public class Enemy : MonoBehaviour
 
     public void DecreaseHealth(float damage)
     {
+        FindObjectOfType<AudioManager>().Play("HitMarker");
         health -= damage;
         if (health <= 0 && !dead)
         {
@@ -61,6 +63,11 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject);
             PlayerInfo.score++;
             UpdateScore();
+            HealthSpawner spwner = GameObject.Find("HealthSpawner").GetComponent<HealthSpawner>();
+            spwner.SpawnHealth(transform.position);
+
+
+
         }
     }
 
@@ -68,4 +75,7 @@ public class Enemy : MonoBehaviour
     {
         sc.text = PlayerInfo.score.ToString();
     }
+
+
+
 }

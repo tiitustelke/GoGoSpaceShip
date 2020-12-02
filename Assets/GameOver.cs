@@ -11,6 +11,8 @@ public class GameOver : MonoBehaviour
    
     void Start()
     {
+        
+
         userName = GameObject.Find("UserInput").GetComponent<InputField>();
         userName.text = "moro";
         Debug.Log("Game Over....");
@@ -19,6 +21,7 @@ public class GameOver : MonoBehaviour
 
     void Update()
     {
+        FindObjectOfType<AudioManager>().Play("GameOver");
         if (Input.GetKeyDown(KeyCode.KeypadEnter))
         {
             Debug.Log(userName.text);

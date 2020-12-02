@@ -16,15 +16,16 @@ public class PauseMenu : MonoBehaviour
 
     void Start()
     {
-       
-        Debug.Log("PauseMenuWorking");
-        menuButton = GameObject.Find("MenuButton").GetComponent<Button>();
-        resumeButton = GameObject.Find("ResumeButton").GetComponent<Button>();
-        quitButton = GameObject.Find("PauseQuitButton").GetComponent<Button>();
+        /*
+         Debug.Log("PauseMenuWorking");
+         menuButton = GameObject.Find("MenuButton").GetComponent<Button>();
+         resumeButton = GameObject.Find("ResumeButton").GetComponent<Button>();
+         quitButton = GameObject.Find("PauseQuitButton").GetComponent<Button>();
 
-        menuButton.onClick.AddListener(delegate { GoToMenu(); });
-        resumeButton.onClick.AddListener(() => Resume());
-        quitButton.onClick.AddListener(() => QuitGame());
+         menuButton.onClick.AddListener(delegate { GoToMenu(); });
+         resumeButton.onClick.AddListener(() => Resume());
+         quitButton.onClick.AddListener(() => QuitGame());
+        */
     }
 
     void Update()

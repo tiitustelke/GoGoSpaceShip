@@ -9,9 +9,6 @@ public class EnemySpawner : MonoBehaviour
     Vector2 min, max;
 
     private List<Level> levels;
-    //testi
-    public static Boolean testi = true;
-    //testi
 
     private int spawnCount, totalSpawns, newBoss;
 
@@ -48,7 +45,7 @@ public class EnemySpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!boss)
+        if (!boss && !PlayerInfo.story)
         {
             lastUpdate += Time.deltaTime;
             if (lastUpdate >= levels[PlayerInfo.level % 2].enemySpawnTime)
@@ -96,6 +93,8 @@ public class EnemySpawner : MonoBehaviour
                     levels[mod].maxEnemies += 2;                //more enemies are spawned during the level
                     levels[mod].enemySpawnTime -= 0.05f;        //time between the enemy spawns will be slighly lower
                     Invoke(nameof(SpawnBoss), 2);
+                    
+                    
                 }
             }
         }
@@ -104,10 +103,15 @@ public class EnemySpawner : MonoBehaviour
 
     void SpawnBoss()
     {
-        boss = Instantiate(bossTypes[newBoss], new Vector3(max.x, max.y - ((max.y - min.y) / 2)), bossTypes[newBoss].transform.rotation);
-        
-        //Boss' health is increased according to current level
-        multiplier = 1f + (0.1f * PlayerInfo.level);
-        boss.GetComponent<Boss>().health = boss.GetComponent<Boss>().health * multiplier;
+
+            boss = Instantiate(bossTypes[newBoss], new Vector3(max.x, max.y - ((max.y - min.y) / 2)), bossTypes[newBoss].transform.rotation);
+
+            //Boss' health is increased according to current level
+            multiplier = 1f + (0.1f * PlayerInfo.level);
+            boss.GetComponent<Boss>().health = boss.GetComponent<Boss>().health * multiplier;    
+
     }
+
+    
+
 }

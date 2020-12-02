@@ -3,12 +3,23 @@ using System;
 using UnityEngine;
 using System.Collections;
 
-//Credits Brackeys tutorial: https://www.youtube.com/watch?v=6OT43pvUyfY
+
+/// <summary>
+/// Code is based on tutorial from Brackeys.
+/// Credits to Brackeys. Tutorial link: https://www.youtube.com/watch?v=6OT43pvUyfY
+/// 
+/// Audiomanager class gives AudioManager GameObject an array of sounds that can be modified in inspector.
+/// Easy to use sounds when needed by calling to AudioManager classes methods.
+/// </summary>
 public class AudioManager : MonoBehaviour
 {
 
     public Sound[] sounds;
-    // Start is called before the first frame update
+
+/// <summary>
+/// Adds components in inspector for every sound that the array contains.
+/// Sound arrays size can be increased in inspector.
+/// </summary>
     void Awake()
     {
         foreach (Sound s in sounds)
@@ -19,7 +30,7 @@ public class AudioManager : MonoBehaviour
             s.source.volume = s.volume;
             s.source.pitch = s.pitch;
 
-            Debug.Log(s.source);
+            
         }
     }
 
@@ -31,21 +42,27 @@ public class AudioManager : MonoBehaviour
 
 
 
-
+    /// <summary>
+    /// When play is called a string with the name of the audioclip is given.
+    /// If audioclip with the name of requested one matches, the audioclip is played.
+    /// If no match then Debug.LogWarning is given.
+    /// Shooting and hitting sounds have been given a randomized pitch to make it less repetitive.
+    /// </summary>
+    /// <param name="name"></param>
     public void Play(string name)
     {
 
         this.name = name;
         Sound s = Array.Find(sounds, sound => sound.name == name);
 
-        //jos paramteri ei matchaa audion nimeen tulee vikailmotusta
+        //If requested audioclips name doesn't match with anything in array
         if (s == null)
         {
             Debug.LogWarning("Sound with name " + name + " is not in audio array in Sounds. HUOM case sensitive");
             return;
         }
 
-        // Äänet saa vähän eri pitchiä niin ei aina samallainen.
+        // Pitch randomizer to decrease repetitive sounds.
         if (this.name == "LaserGun")
         {
 
@@ -61,14 +78,18 @@ public class AudioManager : MonoBehaviour
         s.source.Play();
     }
 
-
+    /// <summary>
+    /// Method for stopping an audioclip with certain name. 
+    /// If name is not found in sound array, warning is given.
+    /// </summary>
+    /// <param name="name"></param>
     public void Stop(string name)
     {
 
         this.name = name;
         Sound s = Array.Find(sounds, sound => sound.name == name);
 
-        //jos paramteri ei matchaa audion nimeen tulee vikailmotusta
+        //If requested audioclips name doesn't match with anything in array
         if (s == null)
         {
             Debug.LogWarning("Sound with name " + name + " is not in audio array in Sounds. HUOM case sensitive");
