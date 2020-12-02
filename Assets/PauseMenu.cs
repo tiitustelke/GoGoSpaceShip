@@ -65,6 +65,11 @@ public class PauseMenu : MonoBehaviour
 
     public void QuitGame()
     {
+        //Save audio volume value while quitting.
+        SettingsMenu sMenu = new SettingsMenu();
+        sMenu.SaveSoundSettings();
+
+        Debug.Log("Quit.");
         Application.Quit();
     }
 
