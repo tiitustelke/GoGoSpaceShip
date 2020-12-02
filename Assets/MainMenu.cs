@@ -11,6 +11,7 @@ public class MainMenu : MonoBehaviour
 
     void Start()
     {
+
         playButton = GameObject.Find("PlayButton").GetComponent<Button>();
         quitButton = GameObject.Find("QuitButton").GetComponent<Button>();
         settingsButton = GameObject.Find("SettingsButton").GetComponent<Button>();
@@ -24,10 +25,9 @@ public class MainMenu : MonoBehaviour
         scoresMenu.SetActive(false);
 
         playButton.onClick.AddListener(() => PlayGame());
-        quitButton.onClick.AddListener(() => QuitGame());
-
         settingsButton.onClick.AddListener(() => Settings());
         scoreButton.onClick.AddListener(() => Scores());
+        quitButton.onClick.AddListener(() => QuitGame());
 
         Button[] buttons = gameObject.GetComponentsInChildren<Button>(true);
         foreach (Button button in buttons)
@@ -47,6 +47,10 @@ public class MainMenu : MonoBehaviour
 
     public void QuitGame()
     {
+        //Save audio volume value while quitting.
+        SettingsMenu sMenu = new SettingsMenu();
+        sMenu.SaveSoundSettings();
+
         Debug.Log("Quit.");
         Application.Quit();
     }
