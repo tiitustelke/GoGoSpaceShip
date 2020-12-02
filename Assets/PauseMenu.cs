@@ -10,6 +10,8 @@ public class PauseMenu : MonoBehaviour
 
     void Start()
     {
+        pauseMenu.SetActive(false);
+
         Button[] buttons = pauseMenu.GetComponentsInChildren<Button>(true);
         foreach (Button button in buttons)
         {
@@ -30,7 +32,6 @@ public class PauseMenu : MonoBehaviour
 
     void Update()
     {
-
         // If user presses esc key, open pause menu
         if (Input.GetKeyDown(KeyCode.Escape))
         {
