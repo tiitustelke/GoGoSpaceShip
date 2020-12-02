@@ -34,21 +34,21 @@ public class StorySubtitles : MonoBehaviour
     {
         yield return new WaitForSeconds(1);
         textBox.text = "Pilot, you are doing a great job.";
-        yield return new WaitForSeconds(2);
-        textBox.text = "Remember to steer using up and down arrow keys.";
+        yield return new WaitForSeconds(3);
+        textBox.text = "Remember to steer using up and down with arrow keys.";
         yield return new WaitForSeconds(4);
         textBox.text = "With this pace you will reach planet Elon by tommorow noon.";
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(3);
         textBox.text = "We won't let anyone stop you from delivering the artifact in time.";
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(3);
         textBox.text = "";
         yield return new WaitForSeconds(2);
         textBox.text = "Oh, oh! We detected an anomaly on the radar";
         yield return new WaitForSeconds(3);
         textBox.text = "Hostiles approaching! Prepare your lasergun!";
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(4);
         textBox.text = "Shoot by pressing the space button!";
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(3);
         textBox.text = "";
 
         PlayerInfo.story = false;
