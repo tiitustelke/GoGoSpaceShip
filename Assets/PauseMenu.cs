@@ -10,7 +10,6 @@ public class PauseMenu : MonoBehaviour
 
     void Start()
     {
-
         Button[] buttons = pauseMenu.GetComponentsInChildren<Button>(true);
         foreach (Button button in buttons)
         {
@@ -74,4 +73,5 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1f;
         SceneManager.LoadScene("MainMenu");
     }
+
 }
