@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class AudioSettings : MonoBehaviour
 {
+    // Credits: https://www.youtube.com/watch?v=xNHSGMKtlv4&ab_channel=JohnFrench 
 
     private static readonly string VolumePref = "VolumePref";
     public float volumeValue;
