@@ -83,6 +83,6 @@ public class Enemy : MonoBehaviour
 
     private void UpdateScore()
     {
-        sc.text = PlayerInfo.score.ToString();
+        sc.text = "Score: " + PlayerInfo.score.ToString();
     }
 }

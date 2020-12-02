@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// This script makes a 2D object face towards the Player
+/// </summary>
 public class LookAtPlayer : MonoBehaviour
 {
     private GameObject player;

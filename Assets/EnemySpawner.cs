@@ -2,7 +2,11 @@
 using System.Collections.Generic;
 using System;
 using UnityEngine;
-
+using UnityEngine.UI;
+/// <summary>
+/// This script manages spawning of all enemies including bosses. Levels are also managed by this script.
+/// See <see cref="Enemy"/>, <see cref="Boss"/>
+/// </summary>
 public class EnemySpawner : MonoBehaviour
 {
     private float lastUpdate, lastSpawn, multiplier;
@@ -13,6 +17,8 @@ public class EnemySpawner : MonoBehaviour
     private int spawnCount, totalSpawns, newBoss;
 
     public GameObject[] enemyTypes, bossTypes;
+
+    public Text level;
 
     GameObject boss;
 
@@ -32,6 +38,8 @@ public class EnemySpawner : MonoBehaviour
         spawnCount = 0;
         newBoss = 0;
         totalSpawns = 0;
+
+        level = GameObject.Find("Level").GetComponent<Text>();
     }
 
     /// <summary>
@@ -81,6 +89,8 @@ public class EnemySpawner : MonoBehaviour
                 if (levels[PlayerInfo.level % 2].maxEnemies == totalSpawns)
                 {
                     PlayerInfo.level++;
+                    level.text = "Level: " + (PlayerInfo.level + 1).ToString();
+
                     totalSpawns = 0;
                     lastSpawn -= 2;
                     int mod = PlayerInfo.level % 2;             //counts mod 2 from running level
@@ -94,7 +104,9 @@ public class EnemySpawner : MonoBehaviour
         }
         
     }
-
+    /// <summary>
+    /// Spawns a new boss
+    /// </summary>
     void SpawnBoss()
     {
         boss = Instantiate(bossTypes[newBoss], new Vector3(max.x, max.y - ((max.y - min.y) / 2)), bossTypes[newBoss].transform.rotation);
