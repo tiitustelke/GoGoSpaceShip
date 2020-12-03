@@ -34,6 +34,7 @@ public class Player : MonoBehaviour
 
         PlayerInfo.level = 0;
         PlayerInfo.health = 100f;
+        PlayerInfo.score = 0;
     }
 
     // Update is called once per frame
