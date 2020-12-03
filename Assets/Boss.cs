@@ -12,7 +12,7 @@ public class Boss : Enemy
 {
     /// <value>Ammo prefab set in Unity.</value>
     public GameObject ammo;
-    /// <value>Boss'es fire rate and damage set in Unity.</value>
+    /// <value>Boss' fire rate and damage set in Unity.</value>
     public float fireRate, damage; //firerate: 0.5 = every half second, 2 = every two seconds...
 
     private GameObject player;
@@ -83,7 +83,8 @@ public class Boss : Enemy
     void Shoot()
     {
         GameObject enemyAmmo = Instantiate(ammo, transform.position + transform.up * 2.0f, Quaternion.identity);
-        enemyAmmo.GetComponent<Weapon>().damage = damage; 
+        enemyAmmo.GetComponent<Weapon>().damage = damage;
+        enemyAmmo.GetComponent<Weapon>().speed = 5f;
         Physics2D.IgnoreCollision(gameObject.GetComponent<Collider2D>(), enemyAmmo.GetComponent<Collider2D>());
         enemyAmmo.GetComponent<Weapon>().enemyType = EnemyType.Boss;
     }
